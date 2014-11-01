@@ -1,0 +1,14 @@
+extends layout
+block content
+    div.content
+        ul
+        each user, i in logged_in
+            li
+                a(href="mailto:#{user.email}")= user.username
+        h1 ברוך הבא לבר סלטים
+        img(src="static/images/logo.jpg")
+        h1 מנת היום
+        img(src="static/images/945737_187563411411898_358203064_n.jpg")
+
+        .row.center
+            a.button(dir="rtl", type='submit') המשך תפריט

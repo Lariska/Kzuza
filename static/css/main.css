@@ -1,0 +1,33 @@
+#footer {
+    position: relative;
+    margin-top: 50px; /* negative value of footer height */
+    height: 50px;
+    clear:both;
+    background-color: black;
+}
+
+.content {
+    width: 30%;
+    margin: auto;
+    margin-top: 6%;
+    text-align: right;
+}
+
+div.columns {
+    width: 100%;
+}
+
+button.button {
+    line-height: 0.3rem;
+    width: 92%;
+}
+
+.center {
+    text-align: center;
+}
+
+a.button {
+    line-height: 0.3rem;
+    width: 100%;
+    margin-top: 6%;
+}
