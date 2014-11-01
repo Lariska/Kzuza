@@ -1,0 +1,21 @@
+extends layout
+block content
+    div.content
+        h1 בר סלטים
+        img(src="static/images/logo.jpg")
+        form(action='/signup', method='post')
+            .row
+                .large-4.columns
+                    label
+                        input(name="username", type='text', placeholder="שם משתמש", dir="rtl")
+            .row
+                .large-4.columns
+                    label
+                        a(dir="rtl") שכחת סיסמה?
+                        input(name="password", type='text', placeholder="סיסמה", dir="rtl")
+            .row.center
+                button.button(dir="rtl", type='submit') כניסה
+            .row.center
+                button.button.alert(dir="rtl") כניסה עם Gmail
+            .row.center
+                button.button(dir="rtl") כניסה עם Facebook
