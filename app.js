@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//TODO: configure passport authentication
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
+
 // New Code
 var mongo = require('mongodb');
 var monk = require('monk');
@@ -32,6 +36,36 @@ app.use(function(req,res,next){
     req.db = db;
     next();
 });
+
+
+//passport.use(new LocalStrategy(
+//    function(username, password, done) {
+//        User.findOne({ username: username }, function(err, user) {
+//            if (err) { return done(err); }
+//            if (!user) {
+//                return done(null, false, { message: 'Incorrect username.' });
+//            }
+//            if (!user.validPassword(password)) {
+//                return done(null, false, { message: 'Incorrect password.' });
+//            }
+//            return done(null, user);
+//        });
+//    }
+//));
+//
+//app.get('/login', function(req, res, next) {
+//    passport.authenticate('local', function(err, user, info) {
+//        if (err) { return next(err); }
+//        if (!user) { return res.redirect('/login'); }
+//        req.logIn(user, function(err) {
+//            if (err) { return next(err); }
+//            return res.redirect('/users/' + user.username);
+//        });
+//    })(req, res, next);
+//});
+//
+//app.post('/signup', passport.authenticate('local', { successRedirect: '/logged_in',
+//    failureRedirect: '/' }));
 
 app.use('/', routes);
 app.use('/users', users);

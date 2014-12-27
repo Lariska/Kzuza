@@ -18,24 +18,25 @@ router.get('/logged_in', function(req, res) {
     });
 });
 
+/* GET New sign up. */
+router.get('/signup', function(req, res) {
+    res.render('signup', { title: 'Kzuza' });
+});
+
+
+
 /* POST to Add User Service */
 router.post('/signup', function(req, res) {
-
-    // Set our internal DB variable
-    var db = req.db;
-    console.log(req.body.username);
-    // Get our form values. These rely on the "name" attributes
-    var userName = req.body.username;
-    var Password = req.body.password;
-
-    // Set our collection
-    var collection = db.get('usercollection');
+    var users = req.db.get('User');
 
     // Submit to the DB
-    collection.insert({
-        "username" : userName,
-        "email" : Password
-    }, function (err, doc) {
+    user.insert({
+        "username" : req.body.username,
+        "password" : req.body.password,
+        "phone_number" : req.body.phone_number
+    },
+
+        function (err, doc) {
         if (err) {
             // If it failed, return error
             res.send("There was a problem adding the information to the database.");
