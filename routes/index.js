@@ -23,6 +23,10 @@ router.get('/signup', function(req, res) {
     res.render('signup', { title: 'Kzuza' });
 });
 
+/* GET New forget password. */
+router.get('/forget_password', function(req, res) {
+    res.render('forget_password', { title: 'Kzuza' });
+});
 
 
 /* POST to Add User Service */
@@ -47,6 +51,17 @@ router.post('/signup', function(req, res) {
             // And forward to success page
             res.redirect("logged_in");
         }
+    });
+});
+
+
+/* POST to forget_password */
+router.post('/forget_password', function(req, res) {
+    var users = req.db.get('User');
+    // Submit to the DB
+    user.insert({
+            "username": req.body.username,
+            "email": req.body.email
     });
 });
 
