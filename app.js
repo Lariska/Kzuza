@@ -1,9 +1,10 @@
 var express = require('express');
 var path = require('path');
-//var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 //TODO: configure passport authentication
 //var passport = require('passport');
@@ -12,7 +13,20 @@ var bodyParser = require('body-parser');
 // New Code
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/nodetest1');
+var MongoClient = mongo.MongoClient;
+
+//switch between the url
+//var dbUrl = 'mongodb://oz:oz1234@ds030817.mongolab.com:30817/kzuza';
+var dbUrl = 'localhost:27017/test'
+var db = monk(dbUrl);
+MongoClient.connect('mongodb://'+dbUrl, function(err, dbTest){
+    if(err || !dbTest){
+        console.log("not connected "+err.message);
+    }else{
+        console.log('Data base connected to '+ dbUrl );
+        db = dbTest;
+    }
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -24,11 +38,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/static/images/icon.png'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'secret',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use("/static", express.static(path.join(__dirname, 'static')));
 
 // Make our db accessible to our router
