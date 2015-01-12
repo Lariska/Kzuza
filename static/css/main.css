@@ -1,5 +1,10 @@
 #footer {
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+
     margin-top: 50px; /* negative value of footer height */
     height: 50px;
     clear:both;
@@ -9,7 +14,7 @@
 .content {
     width: 30%;
     margin: auto;
-    margin-top: 6%;
+    margin-top: 2%;
     text-align: right;
 }
 
