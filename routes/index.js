@@ -2,58 +2,17 @@ var express = require('express');
 var router = express.Router();
 var db = express('mongodb').connect('mongodb://localhost:27017/test');
 
-/*Passport*//*
-
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-
-//serialize deserialize user
-passport.serializeUser(function(user, done) {
-    console.log(user);
-    done(null, user._id);
-});
-passport.deserializeUser(function (id, done) {
-    console.log(id);
-    var user = mongoClient.collections('User');
-    user.findById(id, done);
-});
-//Passport Strategy
-passport.use(new LocalStrategy(
-    function(username, password, done){
-        console.log(username, password);
-        var user = mongoClient.collections('User');
-        user.findOne({username: username}, function(err, user){
-            if (err){console.log(err.message); return done(err);}
-            if (!user || user.password !== password){
-                console.log('not found');
-                return done(null, null);
-            }
-            console.log(user)
-            return done(null, user);
-        });
-    }
-));
-
-router.post('/login', passport.authenticate('local', {
-    //successRedirect: '/logged_in',
-    failureRedirect: '/' },
-    function(req,res){
-        req.render('logged_in')
-    }
-));
-*/
-
-router.post('/login', function(req, res){
-    var db = req.db;
-    var collection = db.collection('User');
-    var user = collection.findOne(req.username);
-    if (user.password == req.password){
-        console.log('username: '+user.username+' passowrd: '+user.password+' is loagged in');
-        req.render('logged_in', user);
-    }else{
-        req.render('home')
-    }
-})
+//router.post('/login', function(req, res){
+//    var db = req.db;
+//    var collection = db.collection('User');
+//    var user = collection.findOne(req.username);
+//    if (user.password == req.password){
+//        console.log('username: '+user.username+' passowrd: '+user.password+' is loagged in');
+//        req.render('logged_in', user);
+//    }else{
+//        req.render('home')
+//    }
+//})
 
 
 /* GET New User page. */
@@ -73,9 +32,9 @@ router.get('/logged_in', function(req, res) {
 });
 
 /* GET New sign up. */
-router.get('/signup', function(req, res) {
-    res.render('signup', { title: 'Kzuza' });
-});
+//router.get('/signup', function(req, res) {
+//    res.render('signup', { title: 'Kzuza' });
+//});
 
 /* GET New forget password. */
 router.get('/forget_password', function(req, res) {
@@ -118,6 +77,10 @@ router.post('/forget_password', function(req, res) {
             "username": req.body.username,
             "email": req.body.email
     });
+});
+
+router.get('/daily_meal', function(req, res) {
+    res.render('daily_meal', { title: 'Kzuza', user: req.user });
 });
 
 module.exports = router;

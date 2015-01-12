@@ -2,11 +2,8 @@ extends layout
 block content
     div.content
         ul
-        h1{{user.username}}
-        //each user, i in logged_in
-            li
-                a(href="mailto:#{user.email}")= user.username
-        h1 שם משתמש  ברוך הבא לבר סלטים
+        h1 #{user.username}
+        h1 ברוך הבא לבר סלטים
         img(src="static/images/logo.jpg")
         h1 מנת היום
         img(src="static/images/945737_187563411411898_358203064_n.jpg")
