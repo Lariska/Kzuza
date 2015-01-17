@@ -3,8 +3,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 50px;
-
     margin-top: 50px; /* negative value of footer height */
     height: 50px;
     clear:both;
@@ -19,8 +17,28 @@
     height: 100%;
 }
 
+.large_page {
+    width: 80%;
+}
+
+/*daily_meal page*/
+.daily_meal {
+    text-align: center;
+}
+
+.daily_meal .row img {
+    width: 25rem;
+    cursor: pointer;
+}
+
+
+
 div.columns {
     width: 100%;
+}
+
+.centered {
+    margin: 0 auto;
 }
 
 button.button {
@@ -32,8 +50,13 @@ button.button {
     text-align: center;
 }
 
+.logo {
+    width: 139px;
+}
+
 a.button {
     line-height: 0.3rem;
     width: 100%;
     margin-top: 6%;
 }
+

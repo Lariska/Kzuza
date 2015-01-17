@@ -5,6 +5,8 @@ var passportLocal = require('passport-local');
 var mongoose = require('mongoose');
 var db = mongoose.db;
 var User = require('../dbModels/User');
+var mandrill = require('mandrill-api/mandrill');
+var mandrill_client = new mandrill.Mandrill('Yud7ibdLRCJrr1OH9jNuGA');
 
 passport.use(new passportLocal.Strategy(
     function (username, password, done){
@@ -64,10 +66,6 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
     User.findById(id, done);
-});
-
-router.get('/login1', function(req, res) {
-    res.render('auth/login', { title: 'Please login.', message: 'wrong username or password' });
 });
 
 router.get('/login', function(req, res) {
@@ -136,6 +134,23 @@ router.get('/logout', function (req, res) {
     res.redirect('/auth/login');
 });
 
+router.get('/forget_password', function(req, res) {
+    res.render('forget_password', { title: 'Kzuza' });
+});
+
+router.post('/forget_password', function(req, res) {
+    User.findOne({'username':req.body.username},function(err, user) {
+        var message = {
+            "html": "<p dir='rtl'>" + " הסיסמא שלך לאתר קצוצה: " + user.password + "</p>",
+            "subject": "קצוצה בר סלטים",
+            "from_email": "kzuza@example.com",
+            "to": [{ "email": req.body.mail}]
+        };
+        mandrill_client.messages.send({"message": message}, function(result) {
+            res.redirect('/');
+        });
+    });
+});
 
 
 module.exports = router;

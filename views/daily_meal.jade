@@ -1,12 +1,15 @@
 extends layout
 block content
-    div.content
+    div.content.daily_meal.large_page
         ul
-        h1 #{user.username}
-        h1 ברוך הבא לבר סלטים
-        img(src="static/images/logo.jpg")
+        h1 ברוך הבא לבר סלטים ,#{user.username}
+        img.logo(src="static/images/logo.jpg")
         h1 מנת היום
-        img(src="static/images/945737_187563411411898_358203064_n.jpg")
-
-        .row.center
-            a.button(dir="rtl", type='submit') המשך תפריט
+        div.row
+            div.medium-6.right
+                img(src="static/images/945737_187563411411898_358203064_n.jpg")
+            div.medium-6.left
+                h4 Here will be some explanation regarding the meal
+        div.row
+            div.medium-6.centered
+                a.button(dir="rtl", type='submit') המשך לתפריט
