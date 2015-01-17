@@ -9,7 +9,7 @@ var User = require('../dbModels/User');
 passport.use(new passportLocal.Strategy(
     function (username, password, done){
         console.log(username, password);
-        user.findOne({username: username}, function(err, user){
+        User.findOne({username: username}, function(err, user){
             if (err) return done(err);
             if (!user || user.password !== password){
                 return done(null, null);

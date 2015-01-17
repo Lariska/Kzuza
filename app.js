@@ -14,8 +14,8 @@ var users = require('./routes/users');
 var auth = require('./routes/auth');
 
 //Database connection
-//var uristring = 'mongodb://oz:oz1234@ds030817.mongolab.com:30817/kzuza';
-uristring = 'mongodb://localhost:27017/test';
+var uristring = 'mongodb://oz:oz1234@ds030817.mongolab.com:30817/kzuza';
+//uristring = 'mongodb://localhost:27017/test';
 var db = mongoose.connect(uristring, function (err, res){
     if (err) {
         console.log ('ERROR connecting to: ' + uristring + '.'+err);

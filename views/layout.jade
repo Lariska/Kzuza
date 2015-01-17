@@ -23,7 +23,7 @@ html
                         li
                             a #{user.username}
                         li
-                            a(href="/auth/logout") Logout
+                            a(href="/") Logout
         block content
         #footer.top-bar
             ul.left
@@ -32,5 +32,4 @@ html
                         a צור קשר
         script(src='/static/js/jquery-1.11.2.min.js')
         script(src='/static/js/foundation.min.js')
-        script
-            $(document).foundation('abide');
+        script $(document).foundation('abide');
