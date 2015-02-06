@@ -1,0 +1,42 @@
+extends layout
+block content
+   div.content.large_page.take_order
+      h1 בר סלטים
+      img.logo(src="static/images/logo.jpg")
+      h2 קבלת הזמנה
+      form(dir="rtl", action="/take_order", method="post", data-abide)
+         .row
+            .switch.round.medium-2.right
+               input(id="take_away",type="radio",name="send_choise",checked)
+               label(for="take_away")
+               h6 עיסוף עצמי <br/>(Take-away)
+            .switch.round.medium-2.right
+               input(id="send_home",type="radio",name="send_choise")
+               label(for="send_home")
+               h6 משלוח עד הבית
+         .row
+            .medium-3.right
+               select
+                  each city, index in cities
+                     option(value=index) #{city}
+               small.error
+                  שדה חובה
+            .medium-3.right
+               input(type="text", placeholder="רחוב", required)
+               small.error
+                  שדה חובה
+            .medium-2.right
+               input(type="text", placeholder="מספר בית", required)
+               small.error
+                  שדה חובה
+         .row
+            .medium-4.right
+               input(type="text", placeholder="מספר דירה / שם החברה")
+            .medium-4.right
+               input(type="text", placeholder="קומה")
+         .row
+            .medium-9.right
+               textarea(placeholder="הערות לשליח")
+         .row
+            .medium-6.centered
+               button.button(dir="rtl", type='submit') המשך

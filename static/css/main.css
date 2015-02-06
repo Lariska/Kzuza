@@ -31,7 +31,19 @@
     cursor: pointer;
 }
 
+/* take_order page */
 
+.take_order .row {
+    max-width: 100%;
+}
+
+.take_order .row .right{
+    margin: 0 1rem;
+}
+
+.take_order .row select{
+    padding-right: 1.5rem;
+}
 
 div.columns {
     width: 100%;
@@ -58,5 +70,9 @@ a.button {
     line-height: 0.3rem;
     width: 100%;
     margin-top: 6%;
+}
+
+.switch input:checked+label{
+    background: green;
 }
 
