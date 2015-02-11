@@ -8,8 +8,21 @@
     clear:both;
     background-color: black;
 }
+body{
+    /*background-image: url("../images/pat.png");*/
+    /*background-color: #5BAA51;*/
+}
 
-.content {
+.pat{
+    background-image: url("../images/pat.png");
+}
+
+#topBar{
+    background-image: url('../images/top3.png');
+    height: 100px;
+}
+
+.myContent {
     width: 30%;
     margin: auto;
     margin-top: 2%;
@@ -45,7 +58,7 @@
     padding-right: 1.5rem;
 }
 
-div.columns {
+div.myColumns {
     width: 100%;
 }
 
@@ -72,7 +85,5 @@ a.button {
     margin-top: 6%;
 }
 
-.switch input:checked+label{
-    background: green;
-}
-
+.size-36{ font-size: 36px}
+.size-27{ font-size: 27px}

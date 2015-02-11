@@ -1,0 +1,27 @@
+div.row
+    div.columns.large-12
+        ul.tabs(data-tab role='tablist')
+            li.tab-title.active(role='presentational')
+                a(href='#panel2-1' role='tab' tabindex='0' aria-selected='true' controls='panel2-1') משתמש קיים
+            li.tab-title(role='presentational')
+                a(href='#panel2-2' role='tab' tabindex='0' aria-selected='false' controls='panel2-2') משתמש חדש
+        div.tabs-content
+            section(role='tabpanel' aria-hidden='false' class='content active' id='panel2-1')
+                include login
+                a(href='#' data-reveal-id="forgetPasswordModal") שכחת סיסמה?
+                div#forgetPasswordModal.reveal-modal(data-reveal)
+                    include forgatPassword
+                    a.close-reveal-modal &#215
+            section(role='tabpanel' aria-hidden='true' class='content' id='panel2-2')
+                include  ./singUp.jade
+
+    //div.columns.large-4
+        a שכחת סיסמה
+        a.button.radius.small( style="background-color:  #8B9DC3;" )
+            i.fi-social-facebook &nbsp&nbsp|&nbsp Facbook
+        a.button.radius.small( style="background-color:  #d34836;" )
+            i.fi-social-google-plus &nbsp&nbsp|&nbsp Google plus
+//a(href='#' data-reveal-id="forgetPasswordModal") Click Me For A Modal
+//div#forgetPasswordModal.reveal-modal(data-reveal)
+    include ./forget_password.jade
+    a.close-reveal-modal &#215

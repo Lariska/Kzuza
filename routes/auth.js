@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var mongoose = require('mongoose');
-var db = mongoose.db;
+// delete this -->> var db = mongoose.db;
 var User = require('../dbModels/User');
 var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('Yud7ibdLRCJrr1OH9jNuGA');
@@ -12,8 +12,12 @@ passport.use(new passportLocal.Strategy(
     function (username, password, done){
         console.log(username, password);
         User.findOne({username: username}, function(err, user){
-            if (err) return done(err);
+            if (err){
+                console.log('Error finding user: ' + err.message);
+                return done(err);
+            }
             if (!user || user.password !== password){
+                console.log('username or password incorrect');
                 return done(null, null);
             }
             return done(null, user);
@@ -81,47 +85,6 @@ router.post('/login', passport.authenticate('local', {
 router.get('/signup', function(req, res) {
     res.render('signup', { title: 'Kzuza' });
 });
-
-
-//router.post('/signup', function(req, res){
-//    console.log('start');
-//    var email = req.param('email');
-//    var username = req.param('username');
-//    var password = req.param('password');
-//    var confirmPassword = req.param('confirmPassword');
-//    var errors = {};
-//
-//    if (password !== confirmPassword) {
-//        errors.confirmPassword = {
-//            message: 'Passwords do not match.'
-//        };
-//    }
-//    console.log(errors);
-//    if (Object.keys(errors).length > 0) {
-//        res.render('auth/signup', {
-//            titel: 'Sign Up',
-//            errors: errors
-//        });
-//    }
-//
-//    var newUser = new user({
-//        email : email,
-//        username : username,
-//        password : password
-//    });
-//
-//    newUser.save(function(err, user){
-//        if (err){
-//            console.error(err.message);
-//        } else {
-//            passport.authenticate('signup', {
-//                successRedirect: '/daily_meal',
-//                failureRedirect: '/'
-//            })
-//            //res.redirect('/daily_meal');
-//        }
-//    });
-//});
 
 router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/daily_meal',

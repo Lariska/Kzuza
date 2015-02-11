@@ -1,0 +1,39 @@
+div.row
+    div.columns.small-12.medium-10.large-6.small-centered
+        form.panel.callout.pat(action='/auth/signup', method='post', data-abide)
+            div.row.collapse
+                div.columns.small-3.left.small-offset-1
+                    img(src='/images/logo.png')
+            div.row.collapse
+                div.small-2.columns
+                    span.prefix
+                        i.fi-torso.size-36
+                div.small-10.columns
+                    label
+                        input(name="username", type='text', placeholder="שם משתמש חדש", dir="rtl", required="required")
+                    small.error(dir="rtl") שדה חובה
+            div.row.collapse
+                div.small-2.columns
+                    span.prefix
+                        i.fi-mail.size-36
+                div.small-10.columns
+                    label
+                        input(type="email", name='email' , placeholder="מייל", id='Email', dir='rtl', required='required' )
+                    small.error(dir="rtl") מייל חובה
+            div.row.collapse
+                div.small-2.columns
+                    span.prefix
+                        i.fi-lock.size-36
+                div.small-10.columns
+                    label
+                        input(name="password", type='password', id='password', placeholder="סיסמה", dir="rtl", required="required")
+                    small.error(dir="rtl") שדה חובה
+            div.row.collapse
+                div.small-2.columns
+                    span.prefix
+                        i.fi-unlock.size-36
+                div.small-10.columns
+                    label
+                        input(name="confirmPassword", type='password', placeholder="וידוי סיסמה", dir="rtl", required="required", data-equalto="password")
+                    small.error(dir="rtl") הסיסמה לא תואמת
+            button.button(dir="rtl", type='submit') הרשמה

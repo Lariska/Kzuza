@@ -18,7 +18,7 @@ var israel_cities = require("./israel_cities");
 
 /* GET New User page. */
 router.get('/', function(req, res) {
-    res.render('home', { title: 'Kzuza' });
+    res.render('home', { title: 'קצוצה' });
 });
 
 /* GET logged_in page. */
