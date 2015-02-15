@@ -1,3 +1,10 @@
+
+/*light color: #B4E41D*/
+/*2ed light: #76A51F*/
+/*dark color: #43702F*/
+/*2ed dark: #2C5F18*/
+/*red: #E4322D*/
+
 #footer {
     position: fixed;
     bottom: 0;
@@ -10,7 +17,7 @@
 }
 body{
     /*background-image: url("../images/pat.png");*/
-    /*background-color: #5BAA51;*/
+    background-color: #76A51F;
 }
 
 .pat{
@@ -20,6 +27,11 @@ body{
 #topBar{
     background-image: url('../images/top3.png');
     height: 100px;
+}
+
+.saladTop{
+    background-image: url('../images/topSalad.png');
+    height: 85px;
 }
 
 .myContent {
@@ -85,5 +97,17 @@ a.button {
     margin-top: 6%;
 }
 
+.rtl{dir: rtl;}
 .size-36{ font-size: 36px}
 .size-27{ font-size: 27px}
+.right10px{margin-right: 10px}
+.phone{
+    font-size: 26px;
+    color: #ffffff;
+    margin-left: 5px;
+}
+.logo6{
+    height: 75px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
