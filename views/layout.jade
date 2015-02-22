@@ -2,15 +2,15 @@ doctype html
 html
     head
         title= title
-        link(rel='stylesheet', href='static/css/normalize.css')
-        link(rel='stylesheet', href='static/css/foundation.min.css')
-        link(rel='stylesheet', href='static/icons/foundation-icons.css')
-        link(rel='stylesheet', href='static/css/main.css')
-        script(src='static/js/modernizr.js')
+        link(rel='stylesheet', href='/css/normalize.css')
+        link(rel='stylesheet', href='/css/foundation.min.css')
+        link(rel='stylesheet', href='/icons/foundation-icons.css')
+        link(rel='stylesheet', href='/css/main.css')
+        script(src='/js/modernizr.js')
     body.pat
         div.top-bar.saladTop
             a(href="/")
-                img.logo6(src="static/images/logo6.png")
+                img.logo6(src="/images/logo6.png")
 
         div.off-canvas-wrap(data-offcanvas)
             div.inner-wrap
@@ -23,7 +23,7 @@ html
                         ul.left
                             li.name
                                 h1.show-for-medium-up
-                                    a אזה"ת פולג, אומנות 5, נתניה
+                                    a �?זה"ת פולג, �?ומנות 5, נתניה
                     section.top-bar-section.right
                         div.right
                             a.right-off-canvas-toggle.menu-icon
@@ -44,7 +44,7 @@ html
                 aside.right-off-canvas-menu(dir='rtl')
                     ul.off-canvas-list
                         li
-                            a(href="/") אזור אישי
+                            a(href="/") �?זור �?ישי
                         li
                             a(href="/") תפריט
                         li
@@ -53,7 +53,7 @@ html
                     block content
                 a.exit-off-canvas
 
-        script(src='static/js/jquery-1.11.2.min.js')
-        script(src='static/js/foundation.min.js')
+        script(src='/js/jquery-1.11.2.min.js')
+        script(src='/js/foundation.min.js')
         script $(document).foundation();
         //script $(document).foundation('abide');

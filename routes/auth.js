@@ -73,22 +73,22 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.get('/login', function(req, res) {
-    res.render('auth/login', { title: 'Please login.' });
+    res.render('auth/loginPage', { title: 'Please login.' });
 });
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/daily_meal',
-    failureRedirect: '/loginPage'
+    failureRedirect: '/auth/login'
 }));
 
 
-router.get('/signup', function(req, res) {
-    res.render('signup', { title: 'Kzuza' });
+router.get('/signUp', function(req, res) {
+    res.render('singUpPage', { title: 'Kzuza' });
 });
 
-router.post('/signup', passport.authenticate('signup', {
+router.post('/signUp', passport.authenticate('signup', {
     successRedirect: '/daily_meal',
-    failureRedirect: '/singUpPage',
+    failureRedirect: '/auth/singUp',
     failureFlash : true
 }));
 
