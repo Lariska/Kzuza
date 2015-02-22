@@ -78,7 +78,7 @@ router.get('/login', function(req, res) {
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/daily_meal',
-    failureRedirect: '/'
+    failureRedirect: '/loginPage'
 }));
 
 
@@ -88,7 +88,7 @@ router.get('/signup', function(req, res) {
 
 router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/daily_meal',
-    failureRedirect: '/',
+    failureRedirect: '/singUpPage',
     failureFlash : true
 }));
 
