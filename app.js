@@ -43,7 +43,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/", express.static(path.join(__dirname, 'static')));
+app.use("/static", express.static(path.join(__dirname, 'static')));
 
 //TODO: Need to fix
 app.use('/', routes);

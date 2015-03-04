@@ -21,19 +21,23 @@ body{
 }
 
 .pat{
-    background-image: url("../images/pat.png");
+    background-image: url("/static/images/pat.png");
 }
 
 #topBar{
-    background-image: url('../images/top3.png');
+    background-image: url('/static/images/top3.png');
     height: 100px;
 }
 
 .saladTop{
-    background-image: url('../images/topSalad.png');
+    background-image: url('/static/images/topSalad.png');
     height: 85px;
 }
+.large_page {
+    width: 80%;
+}
 
+/* home page */
 .myContent {
     width: 30%;
     margin: auto;
@@ -42,13 +46,17 @@ body{
     height: 100%;
 }
 
-.large_page {
-    width: 80%;
+.myContent h1 {
+    margin-right: 15px;
 }
 
 /*daily_meal page*/
 .daily_meal {
     text-align: center;
+}
+
+.daily_meal .button{
+    margin-top: 1rem;
 }
 
 .daily_meal .row img {
@@ -89,6 +97,7 @@ button.button {
 
 .logo {
     width: 139px;
+    margin: 15px;
 }
 
 a.button {
