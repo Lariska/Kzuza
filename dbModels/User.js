@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     email: String,
     username: String,
-    password: String
+    password: String,
+    orders:[
+        {type: Schema.Types.ObjectId, ref: 'Order'}
+    ]
 });
 
 //userSchema.virtual('name.full').get(function(){

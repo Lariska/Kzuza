@@ -4,7 +4,7 @@ block content
       h1 בר סלטים
       img.logo(src="static/images/logo.jpg")
       h2 קבלת הזמנה
-      form(dir="rtl", action="/take_order", method="post", data-abide)
+      form(dir="rtl", action="/payment_method", method="post", data-abide)
          .row
             .switch.round.medium-2.right
                input(id="take_away",type="radio",name="send_choise",checked)
@@ -16,27 +16,27 @@ block content
                h6 משלוח עד הבית
          .row
             .medium-3.right
-               select
+               select(name="city")
                   each city, index in cities
                      option(value=index) #{city}
                small.error
                   שדה חובה
             .medium-3.right
-               input(type="text", placeholder="רחוב", required)
+               input(type="text", placeholder="רחוב", name="street", required)
                small.error
                   שדה חובה
             .medium-2.right
-               input(type="text", placeholder="מספר בית", required)
+               input(type="text", placeholder="מספר בית", name="house_number", required)
                small.error
                   שדה חובה
          .row
             .medium-4.right
-               input(type="text", placeholder="מספר דירה / שם החברה")
+               input(type="text", placeholder="מספר דירה / שם החברה", name="apartment_number")
             .medium-4.right
-               input(type="text", placeholder="קומה")
+               input(type="text", placeholder="קומה", name="floor" )
          .row
             .medium-9.right
-               textarea(placeholder="הערות לשליח")
+               textarea(placeholder="הערות לשליח", name="comments")
          .row
             .medium-6.centered
                button.button(dir="rtl", type='submit') המשך

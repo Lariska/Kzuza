@@ -3,6 +3,7 @@ var router = express.Router();
 var db = express('mongodb').connect('mongodb://localhost:27017/test');
 
 var israel_cities = require("./israel_cities");
+var Order = require('../dbModels/Order');
 //router.post('/login', function(req, res){
 //    var db = req.db;
 //    var collection = db.collection('User');
@@ -71,8 +72,19 @@ router.get('/daily_meal', function(req, res) {
 router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
     cities.unshift("בחר עיר");
-    res.render('take_order', { title: 'Kzuza',
-        user: req.user, cities: cities });
+    res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities });
+});
+
+router.post('/payment_method', function(req, res) {
+    var order = new Order({take_away: req.body.send_choise, status: "in progress",
+    city: req.body.city, street: req.body.street, house_number: req.body.house_number,
+    apartment_number: req.body.apartment_number, floor: req.body.floor, comments: req.body.comments});
+    order.save();
+    req.user.orders.push(order);
+    req.user.save();
+    res.render('payment_method', { title: 'Kzuza', user: req.user, city: order.city,
+    street: order.street, house_number: order.house_number, floor: order.floor,
+    apartment_number: order.apartment_number, take_away: order.take_away});
 });
 
 module.exports = router;

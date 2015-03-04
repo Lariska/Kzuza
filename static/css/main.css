@@ -66,6 +66,10 @@ body{
 
 /* take_order page */
 
+.take_order {
+    text-align: right;
+}
+
 .take_order .row {
     max-width: 100%;
 }
