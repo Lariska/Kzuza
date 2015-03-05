@@ -1,0 +1,14 @@
+extends layout
+block content
+    div.content.large_page.take_order
+        h1 בר סלטים
+        img.logo(src="static/images/logo.jpg")
+        form(dir="rtl", action="/payment", method="post", data-abide)
+            .row
+                .medium-2.right
+                    label
+                        input(name="password", type='password', placeholder="סיסמה לאתר", dir="rtl", required="required")
+                    small.error(dir="rtl") הסיסמה לא תואמת
+            .row
+                .medium-6.right
+                    button.button.small(dir="rtl", type='submit') המשך

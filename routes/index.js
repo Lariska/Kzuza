@@ -87,4 +87,14 @@ router.post('/payment_method', function(req, res) {
     apartment_number: order.apartment_number, take_away: order.take_away});
 });
 
+router.post('/payment', function(req, res) {
+    console.log(req.body.is_cash);
+    if (req.body.is_cash == "true") {
+        res.render('cash', { title: 'Kzuza', user: req.user });
+    }
+    else {
+        res.render('credit', { title: 'Kzuza', user: req.user });
+    }
+});
+
 module.exports = router;

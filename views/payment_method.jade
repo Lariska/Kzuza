@@ -3,21 +3,21 @@ block content
    div.content.large_page.take_order
       h1 בר סלטים
       img.logo(src="static/images/logo.jpg")
-      if (take_away)
+      if take_away
          h2 ההזמנה תיאסף מהבר
       else
-         h2 ההזמנה תישלח לstreet house_number / apartment_number
-      form(dir="rtl", action="/take_order", method="post", data-abide)
+         h2(dir='rtl') ההזמנה תישלח ל #{street} #{house_number} / #{apartment_number} קומה #{floor}
+      form(dir="rtl", action="/payment", method="post", data-abide)
          .row
             h4 עדיפות לתשלום:
             .switch.round.medium-2.right
-               input(id="credit",type="radio",name="payment_choice",checked)
+               input(id="credit",type="radio",name="is_cash",value="false",checked)
                label(for="credit")
                h6 כרטיס אשראי
             .switch.round.medium-2.right
-               input(id="cash",type="radio",name="payment_choice")
+               input(id="cash",type="radio",name="is_cash",value="true")
                label(for="cash")
                h6 מזומן
          .row
-            .medium-6.centered.right
-               button.button(dir="rtl", type='submit') המשך
+            .medium-6.right
+               button.button.small(dir="rtl", type='submit') המשך

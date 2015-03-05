@@ -90,9 +90,15 @@ div.myColumns {
     margin: 0 auto;
 }
 
+/* buttons */
 button.button {
     line-height: 0.3rem;
     width: 92%;
+}
+
+button.button.small {
+    width: 20%;
+    /*margin-right: 1rem;*/
 }
 
 .center {

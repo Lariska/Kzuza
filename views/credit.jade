@@ -1,0 +1,42 @@
+extends layout
+block content
+    div.content.large_page.take_order
+        h1 בר סלטים
+        img.logo(src="static/images/logo.jpg")
+        h2(dir="rtl") פרטי כרטיס אשראי:
+        form(dir="rtl", action="/payment_method", method="post", data-abide)
+            .row
+                .medium-2.right
+                    input.required(type="text", placeholder="מספר כרטיס", name="card_number", required)
+                    small.error
+                        שדה חובה
+                .medium-2.right
+                    select.required(name="month", required)
+                        option(value=0) חודש
+                        each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                            option(value=val) #{val}
+                    small.error
+                        שדה חובה
+                .medium-2.right
+                    select.required(name="year", required)
+                        option(value=0) שנה
+                        each val in [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+                            option(value=val) #{val}
+                    small.error
+                        שדה חובה
+            .row
+                .medium-2.right
+                    input.required(type="text", placeholder="מס ת.ז.", name="id", required)
+                    small.error
+                        שדה חובה
+                .medium-2.right
+                    input.required(type="text", placeholder="שם בעל הכרטיס", name="name", required)
+                    small.error
+                        שדה חובה
+                .medium-2.right
+                    input.required(type="text", placeholder="3 ספרות בגב הכרטיס", name="secret_number", required)
+                    small.error
+                        שדה חובה
+            .row
+                .medium-6.right
+                    button.button.small(dir="rtl", type='submit') המשך

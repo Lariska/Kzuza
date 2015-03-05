@@ -7,36 +7,42 @@ block content
       form(dir="rtl", action="/payment_method", method="post", data-abide)
          .row
             .switch.round.medium-2.right
-               input(id="take_away",type="radio",name="send_choise",checked)
+               input(id="take_away",type="radio",name="send_choise",value="true",
+               onchange="$('.required').removeAttr('required');$('.form').hide('slow')")
                label(for="take_away")
                h6 עיסוף עצמי <br/>(Take-away)
             .switch.round.medium-2.right
-               input(id="send_home",type="radio",name="send_choise")
+               input(id="send_home",type="radio",name="send_choise",value="false",
+               onchange="$('.required').setAttr('required','required');$('.form').show('slow')",checked)
                label(for="send_home")
                h6 משלוח עד הבית
-         .row
+         .row.form
             .medium-3.right
-               select(name="city")
+               select.required(name="city", required)
                   each city, index in cities
                      option(value=index) #{city}
                small.error
                   שדה חובה
             .medium-3.right
-               input(type="text", placeholder="רחוב", name="street", required)
+               input.required(type="text", placeholder="רחוב", name="street", required)
                small.error
                   שדה חובה
             .medium-2.right
-               input(type="text", placeholder="מספר בית", name="house_number", required)
+               input.required(type="text", placeholder="מספר בית", name="house_number", required)
                small.error
                   שדה חובה
-         .row
+         .row.form
             .medium-4.right
-               input(type="text", placeholder="מספר דירה / שם החברה", name="apartment_number")
+               input.required(type="text", placeholder="מספר דירה / שם החברה", name="apartment_number", required)
+               small.error
+                  שדה חובה
             .medium-4.right
-               input(type="text", placeholder="קומה", name="floor" )
-         .row
+               input.required(type="text", placeholder="קומה", name="floor", required )
+               small.error
+                  שדה חובה
+         .row.form
             .medium-9.right
                textarea(placeholder="הערות לשליח", name="comments")
          .row
-            .medium-6.centered
-               button.button(dir="rtl", type='submit') המשך
+            .medium-6.right
+               button.button.small(dir="rtl", type='submit') המשך
