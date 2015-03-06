@@ -21,16 +21,16 @@ body{
 }
 
 .pat{
-    background-image: url("/static/images/pat.png");
+    background-image: url("/images/pat.png");
 }
 
 #topBar{
-    background-image: url('/static/images/top3.png');
+    background-image: url('/images/top3.png');
     height: 100px;
 }
 
 .saladTop{
-    background-image: url('/static/images/topSalad.png');
+    background-image: url('/images/topSalad.png');
     height: 85px;
 }
 .large_page {
