@@ -130,3 +130,13 @@ a.button {
     margin-top: 5px;
     margin-left: 5px;
 }
+.borderGreen{
+    border: solid;
+    border-color: #43702F;
+    border-radius: 10px;
+}
+.active{
+    border: solid;
+    border-color: #E4322D;
+    border-radius: 10px;
+}

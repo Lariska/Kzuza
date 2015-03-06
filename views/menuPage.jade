@@ -1,3 +1,24 @@
-//
-   Created by gabsoz on 3/2/2015.
-
+extends layout
+block content
+    div#tabs(ng-controller="menuController")
+        div.row
+            div.columns.small-4.medium-3.large-4
+                ul.callout(dir="rtl")
+                    li.side-nav(ng-repeat="item in menu", dir="rtl" ng-class="active: isTab($index)")
+                        div.row.pat.borderGreen()
+                            a(href ng-click="setTab($index)")
+                                div.columns.large-6
+                                    img.radius(ng-src="{{item.image}}")
+                                div.columns.large-6
+                                    h3 {{item.title}}
+            div.columns.small-8.medium-7.large-8
+                br
+                div.borderGreen.pat
+                    div(ng-repeat="item in menu" dir="rtl")
+                        section(ng-show="isTab($index)")
+                            h1 {{item.title}}
+                            ul
+                                li(ng-repeat="innerItem in item.items")
+                                    p {{innerItem.name}}
+                                    p {{innerIten.price}}
+                                    p {{innerItem.description}}

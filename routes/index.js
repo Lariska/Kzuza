@@ -72,8 +72,10 @@ router.get('/daily_meal', function(req, res) {
 //TODO: It should be post with passing the meals that user has chosen
 router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
+    cities.unshift("בחר עיר");
     res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities });
 });
+
 
 router.post('/payment_method', function(req, res) {
     var order = new Order({take_away: req.body.send_choise, status: "in progress", user: req.user,
@@ -88,6 +90,7 @@ router.post('/payment_method', function(req, res) {
 });
 
 router.post('/payment', function(req, res) {
+    console.log(req.body.is_cash);
     if (req.body.is_cash == "true") {
         res.render('cash', { title: 'Kzuza', user: req.user });
     }
@@ -112,5 +115,9 @@ router.post('/success', function(req, res) {
     }
     res.render('success', { title: 'Kzuza', user: req.user });
 });
+
+router.get('/menu', function(req, res){
+    res.render('menuPage', {title: "תפריט", user: req.user })
+})
 
 module.exports = router;

@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var data = require('./routes/dataResource');
 
 //Database connection
 var uristring = 'mongodb://oz:oz1234@ds030817.mongolab.com:30817/kzuza';
@@ -49,6 +50,7 @@ app.use("/static", express.static(path.join(__dirname, 'static')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/data', data);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

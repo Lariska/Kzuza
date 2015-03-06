@@ -1,0 +1,29 @@
+extends layout
+block content
+    div.row
+        div.small-4.columns
+            form(method="post" action="/data/saveMenu")
+                fieldset
+                    legend קטגוריה
+                    p title
+                    input(type="text" id="title" name="title")
+                    p image url
+                    input(type="text" id="image" name="image")
+                    input(  type="submit" placeholder="save title")
+        div.small-4.columns
+            form(method="post" action="/data/saveMenuItem" ng-controller="menuController")
+                fieldset
+                    legend פריטים
+                    P select class
+                        select(id="titleID" name="titleID")
+                            option(ng-repeat="item in menu" value="{{item._id}}") {{item.title}}
+                    P name
+                        input(type="text" id="name" name="name")
+                    P description
+                        input(type="text" id="description" name="description")
+                    P price
+                        input(type="text" id="price" name="price")
+                    p image URL (optional)
+                        input(type="text" id="image" name="image")
+                    input(type="submit")
+
