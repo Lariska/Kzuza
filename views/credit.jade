@@ -4,7 +4,7 @@ block content
         h1 בר סלטים
         img.logo(src="static/images/logo.jpg")
         h2(dir="rtl") פרטי כרטיס אשראי:
-        form(dir="rtl", action="/payment_method", method="post", data-abide)
+        form(dir="rtl", action="/success", method="post", data-abide)
             .row
                 .medium-2.right
                     input.required(type="text", placeholder="מספר כרטיס", name="card_number", required)
@@ -12,14 +12,14 @@ block content
                         שדה חובה
                 .medium-2.right
                     select.required(name="month", required)
-                        option(value=0) חודש
+                        option(value="", disabled, selected) חודש
                         each val in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                             option(value=val) #{val}
                     small.error
                         שדה חובה
                 .medium-2.right
                     select.required(name="year", required)
-                        option(value=0) שנה
+                        option(value="", disabled, selected) שנה
                         each val in [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
                             option(value=val) #{val}
                     small.error

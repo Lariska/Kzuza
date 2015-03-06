@@ -3,11 +3,12 @@ block content
     div.content.large_page.take_order
         h1 בר סלטים
         img.logo(src="static/images/logo.jpg")
-        form(dir="rtl", action="/payment", method="post", data-abide)
+        form(dir="rtl", action="/success", method="post", data-abide)
             .row
                 .medium-2.right
+                    input(id="real_password", type="hidden", dir="rtl", value='#{user.password}')
                     label
-                        input(name="password", type='password', placeholder="סיסמה לאתר", dir="rtl", required="required")
+                        input(name="password", type='password', placeholder="סיסמה לאתר", dir="rtl", required="required", data-equalto="real_password")
                     small.error(dir="rtl") הסיסמה לא תואמת
             .row
                 .medium-6.right

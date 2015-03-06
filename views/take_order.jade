@@ -13,12 +13,13 @@ block content
                h6 עיסוף עצמי <br/>(Take-away)
             .switch.round.medium-2.right
                input(id="send_home",type="radio",name="send_choise",value="false",
-               onchange="$('.required').setAttr('required','required');$('.form').show('slow')",checked)
+               onchange="$('.required').attr('required','required');$('.form').show('slow')",checked)
                label(for="send_home")
                h6 משלוח עד הבית
          .row.form
             .medium-3.right
                select.required(name="city", required)
+                  option(value="", disabled, selected) בחר עיר
                   each city, index in cities
                      option(value=index) #{city}
                small.error

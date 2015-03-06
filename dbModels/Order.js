@@ -9,7 +9,9 @@ var orderSchema = new Schema({
     house_number: String,
     apartment_number: String,
     floor: String,
-    comments: String
+    comments: String,
+    payed_with_cash: Boolean,
+    credit_card: {type: Schema.Types.ObjectId, ref: 'Credit'}
 });
 
 module.exports = mongoose.model('Order', orderSchema);

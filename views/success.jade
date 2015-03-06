@@ -1,0 +1,7 @@
+extends layout
+block content
+    div.content.large_page.take_order
+        h1 בר סלטים
+        img.logo(src="static/images/logo.jpg")
+        h2(dir="rtl") הזמנתך נרשמה בהצלחה!
+        script $(document).ready(function() {$('body').fadeOut(3000, function() {window.location.href="/daily_meal"})});
