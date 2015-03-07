@@ -5,6 +5,7 @@ var userSchema = new Schema({
     email: String,
     username: String,
     password: String,
+    openId: String,
     orders:[
         {type: Schema.Types.ObjectId, ref: 'Order'}
     ]

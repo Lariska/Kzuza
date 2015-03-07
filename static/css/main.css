@@ -50,6 +50,11 @@ body{
     margin-right: 15px;
 }
 
+.myContent a.button {
+    width: 92%;
+    margin-top: 0;
+}
+
 /*daily_meal page*/
 .daily_meal {
     text-align: center;
