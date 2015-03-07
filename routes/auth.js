@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var GoogleStrategy = require('passport-google').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var mongoose = require('mongoose');
 // delete this -->> var db = mongoose.db;
 var User = require('../dbModels/User');
@@ -38,6 +39,9 @@ function find_or_create_user(find_params, create_params, done) {
     });
 }
 
+//TODO: forgot password should be disabled both for google and facebook
+//TODO: reenter password should be disabled when finishing order if the user
+//TODO: came from google or facebook
 passport.use(new GoogleStrategy({
         returnURL: 'http://localhost:3000/auth/google/return',
         realm: 'http://localhost:3000/'
@@ -46,6 +50,17 @@ passport.use(new GoogleStrategy({
         console.log(profile);
         find_or_create_user({ openId: identifier }, {email : profile["emails"][0]["value"],
                 username : profile["name"]["givenName"], password : profile["emails"][0]["value"]}, done);
+    }
+));
+
+passport.use(new FacebookStrategy({
+        clientID: "347426272128710",
+        clientSecret: "5724678ef4b5797b0c3f611d356aa1fb",
+        callbackURL: "http://localhost:3000/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, done) {
+        find_or_create_user({ facebookId: profile["id"] }, {
+            username : profile["name"]["givenName"], password : profile["id"]}, done);
     }
 ));
 
@@ -143,5 +158,17 @@ router.get('/google/return',
     passport.authenticate('google', { successRedirect: '/daily_meal',
         failureRedirect: '/' }));
 
+// Redirect the user to Facebook for authentication.  When complete,
+// Facebook will redirect the user back to the application at
+//     /auth/facebook/callback
+router.get('/facebook', passport.authenticate('facebook'));
+
+// Facebook will redirect the user to this URL after approval.  Finish the
+// authentication process by attempting to obtain an access token.  If
+// access was granted, the user will be logged in.  Otherwise,
+// authentication has failed.
+router.get('/facebook/callback',
+    passport.authenticate('facebook', { successRedirect: '/daily_meal',
+        failureRedirect: '/' }));
 
 module.exports = router;

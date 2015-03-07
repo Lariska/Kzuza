@@ -55,6 +55,10 @@ body{
     margin-top: 0;
 }
 
+.myContent a.button.facebook {
+    background-color: #47639E;
+}
+
 /*daily_meal page*/
 .daily_meal {
     text-align: center;
