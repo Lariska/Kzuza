@@ -2,24 +2,37 @@ var express = require('express');
 var router = express.Router();
 var menu = require('../dbModels/menu').menu;
 var menuItem = require('../dbModels/menu').menuItem;
+var ingredients = require('../dbModels/Salad').ingredients;
 
 
 router.get('/admin', function(req,res){
     res.render('admin');
 });
 
-router.get('/menu/:id?', function(req, res){
-    menu.find(function (err, titles){
-        if(err) return console.error(err);
-        titles.forEach(function(title){
-            menuItem.find({titleID: title._id}, function(err, menuItems){
-                if (err) return console.error(err);
-                title.items = menuItems;
-            });
+router.get('/menu/:name?', function(req, res){
+    console.log("------>" + req.param('name') + "<------" )
+    if(req.param('name')){
+        var name = req.param('name');
+        menu.findOne({name: name}, function(err, title){
+            if (err) return console.error(err);
+            console.log(title.name);
+            res.send(title);
         });
-        res.send(titles);
-    });
+    } else {
+        //console.log("------>" + req.param('id') + "<------" )
+        menu.find(function (err, titles){
+            if(err) return console.error(err);
+            //titles.forEach(function(title){
+            //    menuItem.find({titleID: title._id}, function(err, menuItems){
+            //        if (err) return console.error(err);
+            //        title.items = menuItems;
+            //    });
+            //});
+            res.send(titles);
+        });
+    }
 });
+
 
 router.post('/saveMenu', function(req, res){
     var menuItem = new menu({title: req.param('title'), image: req.param('image'), items:[]});
@@ -58,6 +71,33 @@ router.post('/saveMenuItem', function(req, res){
             throw err;
         }
         console.log('menu item saved succesfuly');
+    });
+    res.redirect('admin');
+});
+
+router.get('/ingredients/:type?', function(req, res){
+    if(req.param('type')){
+        console.log("------>" + req.param('type') + "<------" );
+        var type = req.param('type');
+        ingredients.find({type: type}, function(err, data){
+            if(err) return console.error(err);
+            res.send(data);
+        });
+    };
+});
+
+router.post('/saveIngredients', function(req, res){
+    var ing = new ingredients({
+        type: req.param('type'),
+        name: req.param('name'),
+        label: req.param('label')
+    });
+    ing.save(function(err){
+        if (err){
+            console.log('Error in Saving menu item: '+err);
+            throw err;
+        }
+        console.log('ingredient saved succesfuly');
     });
     res.redirect('admin');
 });

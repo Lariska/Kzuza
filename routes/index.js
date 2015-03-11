@@ -117,7 +117,15 @@ router.post('/success', function(req, res) {
 });
 
 router.get('/menu', function(req, res){
-    res.render('menuPage', {title: "תפריט", user: req.user })
-})
+    res.render('menuPage', {title: "תפריט", user: req.user });
+});
+
+router.get('/sandwich', function(req, res){
+    res.render('sandwichPage', {title: "סנדווצים", user: req.user});
+});
+
+router.get('/salad', function(req, res){
+    res.render('saladPage', {title: "סלטים", user: req.user});
+});
 
 module.exports = router;

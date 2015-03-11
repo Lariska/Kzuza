@@ -104,7 +104,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.get('/login', function(req, res) {
-    res.render('auth/loginPage', { title: 'Please login.' });
+    res.render('loginPage', { title: 'Please login.' });
 });
 
 router.post('/login', passport.authenticate('local', {
