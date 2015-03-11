@@ -149,3 +149,19 @@ a.button {
     border-color: #E4322D;
     border-radius: 10px;
 }
+.top10{
+    margin-top: 10px;
+}
+.top20{
+    margin-top: 20px;
+}
+.right20{
+    margin-right: 20px;
+}
+.red{
+    color: #E4322D;
+}
+.labelT{
+    background-color: #43702F;
+    color: #ffffff;
+}
