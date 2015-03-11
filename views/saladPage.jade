@@ -1,3 +1,67 @@
-//
-   Created by gabsoz on 3/10/2015.
+extends layout
+block content
+    div(ng-controller="saladCtrl")
+        section
+            //div.row
+            //    div.columns.small-6
+            //        div.range-slider( data-slider data-options="start: 500; end: 1000; step: 250; display_selector: #sliderOutput;")
+            //            span.range-slider-handle(role="slider" tabindex="0")
+            //            span.range-slider-active-segment
+            //            input(type="hidden")
+            //    div.columns.small-2.medium-1
+            //        h3#sliderOutput  מ"ל
 
+        section
+            p {{price}} ש"ח
+            div.row.top10(dir="rtl")
+                fieldset
+                    legend
+                        h5 גודל
+                    div.columns.small-4
+                        div.switch.round.small
+                            input(type="radio" id="size1" checked name="size" value="500" ng-click="chooseSize(27)")
+                            label(for="size1")
+                            h4 500 מ"ל
+                    div.columns.small-4
+                        div.switch.round.small
+                            input(type="radio" id="size2" name="size" value="750" ng-click="chooseSize(31)")
+                            label(for="size2")
+                            h4 750 מ"ל
+                    div.columns.small-4
+                        div.switch.round.small
+                            input(type="radio" id="size3" name="size" value="1000" ng-click="chooseSize(35)")
+                            label(for="size3")
+                            h4 1000 מ"ל
+            div.row(dir="rtl")
+                div.columns.small-4
+                    fieldset
+                        //legend
+                        div.row
+                            ul.side-nav
+                                li.columns.medium-6(ng-repeat="ing in ingredients")
+                                    label
+                                        input(type="checkbox" id="{{ing.name}}" name="ingredients" value="{{ing.name}}")
+                                        strong &nbsp {{ing.label}}
+                div.columns.small-4
+                    fieldset
+                        legend
+                            h5 2 רטבים לבחירה
+                        div
+                            strong.red * כל רוטב נוסף 2 ש"ח
+                            ul.side-nav
+                                li(ng-repeat="suc in sauce")
+                                    label
+                                        input(type="checkbox" ng-model="suc$index" id="{{suc.name}}" name="sauce" value="{{suc.name}}" ng-change="addSauce(suc$index)")
+                                        strong &nbsp {{suc.label}}
+                div.columns.small-4
+                    fieldset
+                        legend
+                            h5 תוספת אחת לבחירה
+                        div
+                            //h4 תוספת אחת לבחירה
+                            strong.red * כל תוספת נוספת 4 ש"ח
+                            ul.side-nav
+                                li(ng-repeat="ex in extra")
+                                    label
+                                        input(type="checkbox" ng-model="ex$index" id="{{ex.name}}" name="extra" value="{{ex.name}}" ng-change="addExtra(ex$index)")
+                                        strong &nbsp {{ex.label}}

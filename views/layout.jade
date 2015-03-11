@@ -27,17 +27,16 @@ html(ng-app="angularApp")
                         ul.left
                             li.name
                                 h1.show-for-medium-up
-                                    a ה�?ומנות 5, נתניה, �?זור תעשיה פולג
-                    section.top-bar-section.right
-                        div.right
-                            a.right-off-canvas-toggle.menu-icon
-                                i.fi-list.size-36.right10px.show-for-small-up
+                                    a האומנות 5, נתניה, אזור תעשיה פולג
+                    section.top-bar-section
                         div.right.right10px
-                            ul.right
+                            a.right-off-canvas-toggle.fi-list.size-36.right10px
+                        div.right.right10px
+                            ul
                                 if (!user)
                                     li
                                         a(href='#' data-reveal-id="loginModal") Login
-                                        div#loginModal.reveal-modal(data-reveal)
+                                        div#loginModal.reveal-modal.medium(data-reveal)
                                             include ./tabs.jade
                                             a.close-reveal-modal &#215
                                 else
@@ -48,9 +47,15 @@ html(ng-app="angularApp")
                 aside.right-off-canvas-menu(dir='rtl')
                     ul.off-canvas-list
                         li
-                            a(href="/") �?זור �?ישי
+                            a(href="/") דף הבית
+                        li
+                            a(href="/") אזור אישי
                         li
                             a(href="/menu") תפריט
+                        li
+                            a(href="/salad") סלטים בהרכבה
+                        li
+                            a(href="/sandwich") סנדוויצ'ים
                         li
                             a(href="/") המלצות
                 section.main-section

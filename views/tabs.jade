@@ -8,8 +8,8 @@ div.row
         div.tabs-content
             section(role='tabpanel' aria-hidden='false' class='content active' id='panel2-1')
                 include login
-                a(href='#' data-reveal-id="forgetPasswordModal") שכחת סיסמה?
-                div#forgetPasswordModal.reveal-modal(data-reveal)
+                //a(href='#' data-reveal-id="forgetPasswordModal") שכחת סיסמה?
+                div#forgetPasswordModal.reveal-modal.small(data-reveal)
                     include forgatPassword
                     a.close-reveal-modal &#215
             section(role='tabpanel' aria-hidden='true' class='content' id='panel2-2')

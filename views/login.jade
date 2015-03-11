@@ -1,5 +1,5 @@
 div.row
-    div.columns.small-12.medium-10.large-6.small-centered
+    div.columns.small-12.medium-10.large-8.small-centered
         form.panel.callout.pat(action='/auth/login/', method='post')
             div.row.collapse
                 div.columns.small-3.left.small-offset-1
@@ -23,3 +23,5 @@ div.row
                 div.small-10.columns
                     input(name="password", type='password', placeholder="סיסמה", dir="rtl")
             button.button(dir="rtl", type='submit') כניסה
+            div.row
+                a.columns(href='#' data-reveal-id="forgetPasswordModal" dir="rtl") שכחת סיסמה?

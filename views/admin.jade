@@ -1,7 +1,7 @@
 extends layout
 block content
     div.row
-        div.small-4.columns
+        div.medium-4.columns
             form(method="post" action="/data/saveMenu")
                 fieldset
                     legend קטגוריה
@@ -10,7 +10,7 @@ block content
                     p image url
                     input(type="text" id="image" name="image")
                     input(  type="submit" placeholder="save title")
-        div.small-4.columns
+        div.medium-4.columns
             form(method="post" action="/data/saveMenuItem" ng-controller="menuController")
                 fieldset
                     legend פריטים
@@ -26,4 +26,17 @@ block content
                     p image URL (optional)
                         input(type="text" id="image" name="image")
                     input(type="submit")
-
+        div.medium-4.columns
+            form(method="post", action="/data/saveIngredients")
+                fieldset
+                    legend מרכיבים
+                    p select type
+                        select(id="type", name="type")
+                            option(value="ingredients") ingredients
+                            option(value="sauce") sause
+                            option(value="extra") extra
+                    P name
+                        input(type="text" id="name" name="name")
+                    P label
+                        input(type="text" id="label" name="label")
+                    input(type="submit")

@@ -1,17 +1,17 @@
 extends layout
 block content
     div#tabs(ng-controller="menuController")
-        div.row
-            div.columns.small-4.medium-3.large-4
+        div.row(dir="rtl")
+            div.columns.small-4.left-align.medium-3.large-4
                 ul.callout(dir="rtl")
-                    li.side-nav(ng-repeat="item in menu", dir="rtl" ng-class="active: isTab($index)")
-                        div.row.pat.borderGreen()
-                            a(href ng-click="setTab($index)")
+                    li.side-nav(ng-repeat="item in menu" dir="rtl")
+                        a(href ng-click="setTab($index)")
+                            div.row.pat.borderGreen()
                                 div.columns.large-6
-                                    img.radius(ng-src="{{item.image}}")
+                                    img(ng-src="{{item.image}}")
                                 div.columns.large-6
                                     h3 {{item.title}}
-            div.columns.small-8.medium-7.large-8
+            div.columns.small-8
                 br
                 div.borderGreen.pat
                     div(ng-repeat="item in menu" dir="rtl")
@@ -19,6 +19,9 @@ block content
                             h1 {{item.title}}
                             ul
                                 li(ng-repeat="innerItem in item.items")
-                                    p {{innerItem.name}}
-                                    p {{innerIten.price}}
-                                    p {{innerItem.description}}
+                                    a
+                                        ins
+                                            h3 {{innerItem.name}} .... {{innerItem.price}} ש"ח
+                                    div.right20
+                                        strong {{innerItem.description}}
+

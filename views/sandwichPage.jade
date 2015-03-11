@@ -1,3 +1,11 @@
-//
-   Created by gabsoz on 3/10/2015.
-
+extends layout
+block content
+    section(ng-controller="sandwichCtrl")
+        div(ng-repeat="sandwich in sandwiches")
+            div.row.top10(dir="rtl")
+                div.columns.medium-4
+                    img.borderGreen(ng-src="{{sandwich.image}}")
+                div.columns.medium-8
+                    div(dir="rtl")
+                        h3 {{sandwich.name}}...{{sandwich.price}} ש"ח
+                        strong {{sandwich.description}}
