@@ -4,8 +4,16 @@ var  angularApp = angular.module('angularApp', ['ngResource']);
 angularApp.factory('Menu', function($resource){
     //return $resource('/data/menu/:id');//, {id: '@_id'});
     return {
-        titles: $resource('/data/menu/:id'),
+        titles: $resource('/data/menu/:name'),  //,{name: '@_name'}),
         innerItems: $resource('/data/menuItem/:id', {id: '@_id'})
+    }
+});
+
+angularApp.factory('Salad', function($resource){
+    return{
+        ingredients: $resource('/data/ingredients/:type'),
+        sauce: $resource('/data/sauce/:id'),
+        extra: $resource('/data/extra/:id')
     }
 });
 
@@ -30,52 +38,57 @@ angularApp.controller('menuController',function($scope, Menu) {
     };
 });
 
-    //$scope.template = "";
-    //$scope.select = function(menuPart){
-    //    setTemplate(menuPart)
-    //    menu.forEach(function(part){
-    //        if(menuPart===part)
-    //            part.selected = true;
-    //        else
-    //            part.selected = false;
-    //    });
-    //};
-    //
-    //function setTemplate(item){
-    //    $scope.template = "h1 " + item.title;
-    //    item.items.forEach(function (innerItem){
-    //        $scope.template +="h2 "+ innerItem.name +
-    //        "p " + innerItem.price +
-    //        "br " + innerItem.description;
-    //    });
-    //    $('manuArea').text($scope.template)
-    //}
+angularApp.controller('sandwichCtrl', function($scope, Menu){
+    Menu.titles.get({name: "sandwich"}, function(title){
+        var sandwich = title;
+        Menu.innerItems.query({id: title._id}, function(items){
+            $scope.sandwiches = items;
+        });
+    });
+});
 
-    //$scope.isSelected = function(part){
-    //    return part.selected;
-    ////};
-    //this.tab = 2;
-    //$scope.isTab = function(Tab){
-    //    return this.tab === Tab;
-    //};
-    //$scope.setTab = function(Tab){
-    //    this.tab = Tab;
-    //};
+angularApp.controller('saladCtrl', function ($scope, Salad) {
+    Salad.ingredients.query({type: 'ingredients'}, function (data) {
+        $scope.ingredients = data;
+    });
+    Salad.ingredients.query({type: 'sauce'}, function (data) {
+        $scope.sauce = data;
+    });
+    Salad.ingredients.query({type: 'extra'}, function (data) {
+        $scope.extra = data;
+    });
 
-//});
-//angularApp.controller('menuTabs', function($scope){
-//    $scope.tab = 1;
-//    $scope.isTab = function(Tab){
-//        return $scope.tab === Tab;
-//    }
-//    $scope.setTab = function(Tab){
-//        $scope.tab = Tab;
-//    }
-//})
+    $scope.price = 27;
 
-angularApp.factory('menu', function(){
+    function calculatePrice() {
+        $scope.price = sizeP + saucePrice + extrasPrice;
+    };
+
+    var sizeP = 27;
+    $scope.chooseSize = function (priceSize) {
+        sizeP = priceSize;
+        calculatePrice();
+    };
+    var sauceCount = 0;
+    var saucePrice = 0;
+    $scope.addSauce = function (chack) {
+        if (chack === true) sauceCount++;
+        if (chack === false) sauceCount--;
+        if (sauceCount >= 2) saucePrice = (sauceCount - 2) * 2;
+        calculatePrice();
+    };
+
+    var extrasCount = 0;
+    var extrasPrice = 0;
+    $scope.addExtra = function (chack) {
+        if (chack === true) extrasCount++;
+        if (chack === false)extrasCount--;
+        if (extrasCount >= 1) extrasPrice = (extrasCount - 1) * 4;
+        calculatePrice();
+    };
 
 });
+
 
 var menu1 = [{
         selected: true,
