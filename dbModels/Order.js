@@ -14,4 +14,12 @@ var orderSchema = new Schema({
     credit_card: {type: Schema.Types.ObjectId, ref: 'Credit'}
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+var userOrderSchema = new Schema({
+    user: String,
+    items: [String],
+    salads: [String]
+});
+
+exports.Order = mongoose.model('Order', orderSchema);
+
+exports.userOrder = mongoose.model('userOrder', userOrderSchema);
