@@ -38,16 +38,25 @@ angularApp.controller('menuController',function($scope, Menu) {
     };
 });
 
-angularApp.controller('sandwichCtrl', function($scope, Menu){
+angularApp.controller('sandwichCtrl', function($scope, Menu, $http){
     Menu.titles.get({name: "sandwich"}, function(title){
-        var sandwich = title;
+        //var sandwich = title;
         Menu.innerItems.query({id: title._id}, function(items){
             $scope.sandwiches = items;
+
         });
     });
+    $scope.select = "לא נבחר"
+    $scope.over = function(sandwich){
+        $scope.select = sandwich;
+    };
+    $scope.sandwichSelect = function(sandwich){
+        $scope.select = sandwich;
+        $http.post('/order/item/' + sandwich._id, {item: sandwich});
+    };
 });
 
-angularApp.controller('saladCtrl', function ($scope, Salad) {
+angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
     Salad.ingredients.query({type: 'ingredients'}, function (data) {
         $scope.ingredients = data;
     });
