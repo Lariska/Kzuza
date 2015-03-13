@@ -5,6 +5,9 @@ html(ng-app="angularApp")
         link(rel='stylesheet', href='/css/normalize.css')
         link(rel='stylesheet', href='/css/foundation.min.css')
         link(rel='stylesheet', href='/icons/foundation-icons.css')
+        //link(rel='styleSheet', href='/css/animations.css')
+        link(rel='styleSheet', href='/css/animate.css')
+
         link(rel='stylesheet', href='/css/main.css')
         script(src='/js/modernizr.js')
 
@@ -12,13 +15,13 @@ html(ng-app="angularApp")
         script(src='/js/angular-resource.min.js')
         script(src='/js/controller.js')
     body.pat
-        div.top-bar.saladTop
+        div.top-bar.saladTop.wow.fadeInDown
             a(href="/")
-                img.logo6(src="/images/logo6.png")
+                img.logo6(src="/images/logo6.png").wow.slideInRight
 
         div.off-canvas-wrap(data-offcanvas)
             div.inner-wrap
-                nav.top-bar
+                nav.top-bar.wow.fadeInDown
                     section.top-bar-section.left
                         hi.title.left
                             span.show-for-small-up
@@ -61,6 +64,8 @@ html(ng-app="angularApp")
                 section.main-section
                     block content
                 a.exit-off-canvas
+        script(src='/js/wow.min.js')
+        script new WOW().init();
         script(src='/js/jquery-1.11.2.min.js')
         script(src='/js/foundation.min.js')
         script $(document).foundation();
