@@ -3,8 +3,10 @@ var router = express.Router();
 var db = express('mongodb').connect('mongodb://localhost:27017/test');
 
 var israel_cities = require("./israel_cities");
-var Order = require('../dbModels/Order');
+var Order = require('../dbModels/Order').Order;
 var Credit = require('../dbModels/Credit');
+var userOrder = require('../dbModels/Order').userOrder;
+
 //router.post('/login', function(req, res){
 //    var db = req.db;
 //    var collection = db.collection('User');
@@ -20,6 +22,7 @@ var Credit = require('../dbModels/Credit');
 
 /* GET New User page. */
 router.get('/', function(req, res) {
+    //console.log(req.cookies);
     res.render('home', { title: 'קצוצה' });
 });
 
@@ -126,6 +129,42 @@ router.get('/sandwich', function(req, res){
 
 router.get('/salad', function(req, res){
     res.render('saladPage', {title: "סלטים", user: req.user});
+});
+
+router.post('/order/item/:id', function(req, res){
+    //res.clearCookie('cart');
+    var cart = req.cookies.cart;
+    var item = req.param('item')
+    //console.log(cart);
+    if(!cart){
+        console.log("no " + req.param('item')._id);
+        if(req.user){
+            cart = new userOrder({user: req.user._id, items: item, salads: []});
+        } else {
+            cart = new userOrder({user: "", items: item, salads: []});
+        }
+        //cart.items.push(req.param.id);
+        cart.save(function(err, cart){
+            if(err) return console.error(err);
+            //console.log(cart);
+            res.cookie('cart',cart);
+            res.redirect("/");
+        });
+    } else {
+        console.log("yes")
+        userOrder.findOne({_id: cart._id}, function(err, doc){
+            if (err) return console.error(err);
+            doc.items.push(req.param('id'));
+            doc.save();
+            //userOrder.update({_id: cart._id}, {items: cart.items}, function(err, doc){})
+        })
+    }
+    //console.log(cart+" "+req.cookies.cart);
+});
+router.post('/deleteCookie', function(req, res){
+    console.log(req.cookies.cart+" is deleted")
+    res.clearCookie('cart');
+    res.redirect('/');
 });
 
 module.exports = router;
