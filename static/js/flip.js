@@ -10,7 +10,7 @@ $(document).ready(function() {
             rotate(".first");
             setTimeout(function() {
                 $(".flippers .first .back").css("background-color", "forestgreen");
-                $(".flippers .progress").width("65%");
+                $(".flippers .progress").width("93%");
                 rotate(".second");
                 setTimeout(function() {
                     rotate(".second");
@@ -18,7 +18,7 @@ $(document).ready(function() {
                         rotate(".second");
                         setTimeout(function() {
                             $(".flippers .second .back").css("background-color", "forestgreen");
-                            $(".flippers .progress").width("100%");
+                            $(".flippers .progress").width("139%");
                             rotate(".third");
                             setTimeout(function() {
                                 rotate(".third");
