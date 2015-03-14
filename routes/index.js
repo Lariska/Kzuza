@@ -124,11 +124,15 @@ router.get('/menu', function(req, res){
 });
 
 router.get('/sandwich', function(req, res){
-    res.render('sandwichPage', {title: "סנדווצי�?", user: req.user});
+    res.render('sandwichPage', {title: "סנדוויצים", user: req.user});
 });
 
 router.get('/salad', function(req, res){
-    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
+    res.render('saladPage', {title: "סלטים", user: req.user});
+});
+
+router.get('/contact', function(req, res){
+    res.render('contactPage', {title: "צור קשר", user: req.user});
 });
 
 
@@ -169,7 +173,7 @@ router.post('/deleteCookie', function(req, res){
 });
 
 router.get('/contactUs', function(req, res){
-    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
+    res.render('saladPage', {title: "סלטים", user: req.user});
 });
 
 module.exports = router;
