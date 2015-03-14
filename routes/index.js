@@ -124,12 +124,13 @@ router.get('/menu', function(req, res){
 });
 
 router.get('/sandwich', function(req, res){
-    res.render('sandwichPage', {title: "סנדווצים", user: req.user});
+    res.render('sandwichPage', {title: "סנדווצי�?", user: req.user});
 });
 
 router.get('/salad', function(req, res){
-    res.render('saladPage', {title: "סלטים", user: req.user});
+    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
 });
+
 
 router.post('/order/item/:id', function(req, res){
     //res.clearCookie('cart');
@@ -165,6 +166,10 @@ router.post('/deleteCookie', function(req, res){
     console.log(req.cookies.cart+" is deleted")
     res.clearCookie('cart');
     res.redirect('/');
+});
+
+router.get('/contactUs', function(req, res){
+    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
 });
 
 module.exports = router;

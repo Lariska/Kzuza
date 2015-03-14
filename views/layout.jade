@@ -8,64 +8,66 @@ html(ng-app="angularApp")
         //link(rel='styleSheet', href='/css/animations.css')
         link(rel='styleSheet', href='/css/animate.css')
 
-        link(rel='stylesheet', href='/css/main.css')
+        link(rel='stylesheet', href='/css/mainNew.css')
         script(src='/js/modernizr.js')
 
         script(src='/js/angular.min.js')
         script(src='/js/angular-resource.min.js')
         script(src='/js/controller.js')
     body.pat
-        div.top-bar.saladTop.wow.fadeInDown
-            a(href="/")
-                img.logo6(src="/images/logo6.png").wow.slideInRight
+        div.all
+            div.rightside
+            div.middleside
+                div.top-bar.saladTop
+                    a(href="/")
+                        img.logo6(src="/images/logo6.png")
 
-        div.off-canvas-wrap(data-offcanvas)
-            div.inner-wrap
-                nav.top-bar.wow.fadeInDown
-                    section.top-bar-section.left
-                        hi.title.left
-                            span.show-for-small-up
-                                a.phone(href="tel:09-7677436")
-                                    i.fi-telephone.phone 09-7677436
-                        ul.left
-                            li.name
-                                h1.show-for-medium-up
-                                    a האומנות 5, נתניה, אזור תעשיה פולג
-                    section.top-bar-section
-                        div.right.right10px
-                            a.right-off-canvas-toggle.fi-list.size-36.right10px
-                        div.right.right10px
-                            ul
-                                if (!user)
-                                    li
-                                        a(href='#' data-reveal-id="loginModal") Login
-                                        div#loginModal.reveal-modal.medium(data-reveal)
-                                            include ./tabs.jade
-                                            a.close-reveal-modal &#215
-                                else
-                                    li
-                                        a #{user.username}
-                                    li
-                                        a(href="/") Logout
-                aside.right-off-canvas-menu(dir='rtl')
-                    ul.off-canvas-list
-                        li
-                            a(href="/") דף הבית
-                        li
-                            a(href="/") אזור אישי
-                        li
-                            a(href="/menu") תפריט
-                        li
-                            a(href="/salad") סלטים בהרכבה
-                        li
-                            a(href="/sandwich") סנדוויצ'ים
-                        li
-                            a(href="/") המלצות
-                section.main-section
-                    block content
-                a.exit-off-canvas
-        script(src='/js/wow.min.js')
-        script new WOW().init();
+                div.off-canvas-wrap(data-offcanvas)
+                    div.inner-wrap
+                        nav.top-bar
+                            section.top-bar-section.left
+                                hi.title.left
+                                    span.show-for-small-up
+                                    a(href="https://www.facebook.com/pages/%D7%A7%D7%A6%D7%95%D7%A6%D7%94-%D7%91%D7%A8-%D7%A1%D7%9C%D7%98%D7%99%D7%9D/511770288925828?ref=br_tf")
+                                        img.logo1(src="/images/facebook.png")
+                                    a.phone(href="tel:09-7677436")
+                                            i.fi-telephone.phone 09-7677436
+                            section.top-bar-section
+                                div.right.right10px
+                                    a.right-off-canvas-toggle.fi-list.size-36.right10px
+                                div.right.right10px
+                                    ul
+                                        if (!user)
+                                            li
+                                                a(href='#' data-reveal-id="loginModal") Login
+                                                div#loginModal.reveal-modal.medium(data-reveal)
+                                                    include ./tabs.jade
+                                                    a.close-reveal-modal &#215
+                                        else
+                                            li
+                                                a #{user.username}
+                                            li
+                                                a(href="/") Logout
+                        aside.right-off-canvas-menu(dir='rtl')
+                            ul.off-canvas-list
+                                li
+                                    a(href="/") דף הבית
+                                li
+                                    a(href="/") אזור אישי
+                                li
+                                    a(href="/menu") תפריט
+                                li
+                                    a(href="/salad") סלטים בהרכבה
+                                li
+                                    a(href="/sandwich") סנדוויצ'ים
+                                li
+                                    a(href="/") המלצות
+                                li
+                                    a(href="/contact") צור קשר
+                        section.main-section
+                            block content
+                        a.exit-off-canvas
+            div.leftside
         script(src='/js/jquery-1.11.2.min.js')
         script(src='/js/foundation.min.js')
         script $(document).foundation();
