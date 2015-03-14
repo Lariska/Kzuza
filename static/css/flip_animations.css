@@ -66,3 +66,8 @@
     margin-right: -1.6rem;
     width: 35%;
 }
+
+.daily_meal .slider1 h4 {
+    direction: rtl;
+    margin-right: 2rem;
+}
