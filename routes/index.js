@@ -177,8 +177,9 @@ router.post('/deleteCookie', function(req, res){
     res.redirect('/');
 });
 
-router.get('/contactUs', function(req, res){
+router.get('/contactUs', function(req, res) {
     res.render('saladPage', {title: "סלטים", user: req.user});
+});
 
 router.get('/order', function(req, res){
     res.render('order', {title: 'הזמנה', user: req.user, cart: req.cookies.cart });
