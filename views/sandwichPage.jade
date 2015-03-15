@@ -15,14 +15,21 @@ block content
     section(ng-controller="sandwichCtrl")
         form(id="sandwichForm" method="post" action="/order/item")
             input(type="hidden" id="sandwichID" value="select._id")
-            div {{select.name}}
-            div.wow.bounceInUp(ng-repeat="sandwich in sandwiches")
-                a(ng-mouseover="over(sandwich)" ng-click="sandwichSelect(sandwich)")
-                    input(type="hidden")
-                    div.row.top10(dir="rtl")
-                        div.columns.medium-4
-                            img.borderGreen(ng-src="{{sandwich.image}}")
-                        div.columns.medium-8
-                            div(dir="rtl")
-                                h3 {{sandwich.name}}...{{sandwich.price}} ש"ח
-                                strong {{sandwich.description}}
+            div.row
+                div.columns.medium-8
+                    div.wow.bounceInUp(ng-repeat="sandwich in sandwiches")
+                        a(ng-mouseover="over(sandwich)" ng-click="sandwichSelect(sandwich)")
+                            input(type="hidden")
+                            div.row.top10(dir="rtl")
+                                div.columns.medium-4
+                                    img.borderGreen(ng-src="{{sandwich.image}}")
+                                div.columns.medium-8
+                                    div(dir="rtl")
+                                        h3 {{sandwich.name}}...{{sandwich.price}} ש"ח
+                                        strong {{sandwich.description}}
+                div.columns.medium-4
+                    p {{select.name}}
+                    p {{cart._id}}
+                    p {{cart.user}}
+                    ul
+                        li(ng-repeat="item in cart.items") {{item}}

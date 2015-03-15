@@ -14,7 +14,7 @@ block content
             div.columns.small-8
                 br
                 div.borderGreen.pat
-                    div(ng-repeat="item in menu" dir="rtl")
+                    div.wow.slideLeft(ng-repeat="item in menu" dir="rtl")
                         section(ng-show="isTab($index)")
                             h1 {{item.title}}
                             ul

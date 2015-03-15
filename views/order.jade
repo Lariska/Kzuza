@@ -1,0 +1,11 @@
+extends layout
+block content
+
+    div
+        section(ng-controller="orderCtrl")
+            div
+                p {{cart._id}}
+                ul
+                    li(ng-repeat="item in cart.items") {{item}}
+                ul
+                    li(ng-repeat="salad in cart.Salad") {{salad}}

@@ -3,6 +3,7 @@ var router = express.Router();
 var menu = require('../dbModels/menu').menu;
 var menuItem = require('../dbModels/menu').menuItem;
 var ingredients = require('../dbModels/Salad').ingredients;
+var userOrder = require('../dbModels/Order').userOrder;
 
 
 router.get('/admin', function(req,res){
@@ -100,6 +101,16 @@ router.post('/saveIngredients', function(req, res){
         console.log('ingredient saved succesfuly');
     });
     res.redirect('admin');
+});
+
+router.get('/order/:id?', function(req, res){
+    var cart = req.cookies.cart;
+    console.log(cart);
+    userOrder.findOne({_id: cart._id}, function(err, order){
+        if (err) return console.error(err);
+        console.log(order);
+        res.send(order);
+    });
 });
 
 module.exports = router;

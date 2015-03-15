@@ -1,5 +1,5 @@
 
-var  angularApp = angular.module('angularApp', ['ngResource']);
+var  angularApp = angular.module('angularApp', ['ngResource', 'ngCookies']);
 
 angularApp.factory('Menu', function($resource){
     //return $resource('/data/menu/:id');//, {id: '@_id'});
@@ -14,6 +14,12 @@ angularApp.factory('Salad', function($resource){
         ingredients: $resource('/data/ingredients/:type'),
         sauce: $resource('/data/sauce/:id'),
         extra: $resource('/data/extra/:id')
+    }
+});
+
+angularApp.factory('Order', function($resource){
+    return{
+        cart: $resource('/data/order/:id', {id: '@_id'})
     }
 });
 
@@ -38,7 +44,7 @@ angularApp.controller('menuController',function($scope, Menu) {
     };
 });
 
-angularApp.controller('sandwichCtrl', function($scope, Menu, $http){
+angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
     Menu.titles.get({name: "sandwich"}, function(title){
         //var sandwich = title;
         Menu.innerItems.query({id: title._id}, function(items){
@@ -52,7 +58,10 @@ angularApp.controller('sandwichCtrl', function($scope, Menu, $http){
     };
     $scope.sandwichSelect = function(sandwich){
         $scope.select = sandwich;
-        $http.post('/order/item/' + sandwich._id, {item: sandwich});
+        $http.post('/order/item/' + sandwich._id, {item: sandwich})
+            .success(function(data, status, headers, config){
+                $scope.cart = data;
+            });
     };
 });
 
@@ -98,6 +107,12 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
 
 });
 
+angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order, $cookies){
+    //$scope.cart = $cookies.get('cart');
+    Order.cart.get(function(data){
+        $scope.cart = data;
+    });
+});
 
 var menu1 = [{
         selected: true,

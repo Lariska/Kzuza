@@ -23,7 +23,7 @@ var userOrder = require('../dbModels/Order').userOrder;
 /* GET New User page. */
 router.get('/', function(req, res) {
     //console.log(req.cookies);
-    res.render('home', { title: 'קצוצה' });
+    res.render('home', { title: 'קצוצה' , user: req.user});
 });
 
 /* GET logged_in page. */
@@ -144,28 +144,33 @@ router.post('/order/item/:id', function(req, res){
     if(!cart){
         console.log("no " + req.param('item')._id);
         if(req.user){
-            cart = new userOrder({user: req.user._id, items: item, salads: []});
+            cart = new userOrder({user: req.user._id, items: [item], salads: []});
         } else {
-            cart = new userOrder({user: "", items: item, salads: []});
+            cart = new userOrder({user: "", items: [item], salads: []});
         }
         //cart.items.push(req.param.id);
-        cart.save(function(err, cart){
+        cart.save(function(err, doc){
             if(err) return console.error(err);
-            //console.log(cart);
-            res.cookie('cart',cart);
-            res.redirect("/");
+            console.log(doc);
+            res.cookie('cart',doc);
+            res.send(doc);
         });
     } else {
-        console.log("yes")
+        console.log("yes " + req.param('item')._id);
         userOrder.findOne({_id: cart._id}, function(err, doc){
             if (err) return console.error(err);
             doc.items.push(req.param('id'));
             doc.save();
+            console.log(doc);
+            res.cookie('cart',doc);
+            res.send(doc);
             //userOrder.update({_id: cart._id}, {items: cart.items}, function(err, doc){})
         })
     }
+    //res.redirect('/');
     //console.log(cart+" "+req.cookies.cart);
 });
+
 router.post('/deleteCookie', function(req, res){
     console.log(req.cookies.cart+" is deleted")
     res.clearCookie('cart');
@@ -174,6 +179,9 @@ router.post('/deleteCookie', function(req, res){
 
 router.get('/contactUs', function(req, res){
     res.render('saladPage', {title: "סלטים", user: req.user});
+
+router.get('/order', function(req, res){
+    res.render('order', {title: 'הזמנה', user: req.user, cart: req.cookies.cart });
 });
 
 module.exports = router;
