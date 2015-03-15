@@ -5,7 +5,7 @@ angularApp.factory('Menu', function($resource){
     //return $resource('/data/menu/:id');//, {id: '@_id'});
     return {
         titles: $resource('/data/menu/:name'),  //,{name: '@_name'}),
-        innerItems: $resource('/data/menuItem/:id', {id: '@_id'})
+        innerItems: $resource('/data/menuItem/:id')//, {id: '@_id'})
     }
 });
 
@@ -29,7 +29,7 @@ angularApp.controller('menuController',function($scope, Menu) {
 
     Menu.titles.query(function(data){
         data.forEach(function(title){
-            Menu.innerItems.query({id: title._id}, function(items){
+            Menu.innerItems.query({id: title._id, list: true}, function(items){
                 title.items = items;
             });
         });
@@ -47,7 +47,7 @@ angularApp.controller('menuController',function($scope, Menu) {
 angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
     Menu.titles.get({name: "sandwich"}, function(title){
         //var sandwich = title;
-        Menu.innerItems.query({id: title._id}, function(items){
+        Menu.innerItems.query({id: title._id, list: true}, function(items){
             $scope.sandwiches = items;
 
         });
@@ -83,34 +83,72 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
     };
 
     var sizeP = 27;
+    var ingCount = 0;
+    var sauceCount = 0;
+    var saucePrice = 0;
+    var extrasCount = 0;
+    var extrasPrice = 0;
+
     $scope.chooseSize = function (priceSize) {
         sizeP = priceSize;
         calculatePrice();
     };
-    var sauceCount = 0;
-    var saucePrice = 0;
-    $scope.addSauce = function (chack) {
-        if (chack === true) sauceCount++;
-        if (chack === false) sauceCount--;
+
+    $scope.addIng = function(check, id){
+        if (check === true) ingCount = add(ing, id);
+        if (check === false) ingCount = remove(ing, id);
+    }
+
+    $scope.addSauce = function (chack, id) {
+        if (chack === true) sauceCount = add(suc, id);
+        if (chack === false) sauceCount = remove(suc, id);
         if (sauceCount >= 2) saucePrice = (sauceCount - 2) * 2;
         calculatePrice();
     };
 
-    var extrasCount = 0;
-    var extrasPrice = 0;
-    $scope.addExtra = function (chack) {
-        if (chack === true) extrasCount++;
-        if (chack === false)extrasCount--;
+    $scope.addExtra = function (chack, id) {
+        if (chack === true) extrasCount = add(ex, id);
+        if (chack === false) extrasCount = remove(ex, id);
         if (extrasCount >= 1) extrasPrice = (extrasCount - 1) * 4;
         calculatePrice();
     };
 
+    function add(type, item){
+        type.push(item);
+        return type.length;
+    }
+    function remove(type, item){
+        var indx = type.indexOf(item);
+        type.splice(indx, 1);
+        return type.length;
+    }
+
+    var ing = [];
+    var suc = [];
+    var ex = [];
+
 });
 
 angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order, $cookies){
-    //$scope.cart = $cookies.get('cart');
-    Order.cart.get(function(data){
+    //var cartP = $cookies.get('cart');
+    var items = [];
+    var salads = [];
+
+    $scope.itemsInCart = items;
+    $scope.saladsInCart = salads;
+
+    Order.cart.get( function(data){
         $scope.cart = data;
+        data.items.forEach(function(item){
+            Menu.innerItems.get({id: item}, function(data){
+                items.push(data);
+            });
+        });
+        data.salads.forEach(function(item){
+            //Salad.innerItems.get({id: item}, function(data){
+            //    items.push(data);
+            //});
+        });
     });
 });
 

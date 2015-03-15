@@ -182,7 +182,7 @@ router.get('/contactUs', function(req, res) {
 });
 
 router.get('/order', function(req, res){
-    res.render('order', {title: 'הזמנה', user: req.user, cart: req.cookies.cart });
+    res.render('order', {title: 'הזמנה', user: req.user});//}, cart: req.cookies.cart });
 });
 
 module.exports = router;

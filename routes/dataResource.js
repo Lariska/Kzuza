@@ -50,10 +50,20 @@ router.post('/saveMenu', function(req, res){
 router.get('/menuItem/:id?',function(req, res){
     var id = req.param('id');
     console.log("DATA - " + id);
-    menuItem.find({titleID: id},function(err, item){
-        if(err) return console.error(err);
-        res.send(item);
-    });
+    if (req.param('list')) {
+        menuItem.find({titleID: id}, function (err, item) {
+            if (err) return console.error(err);
+            res.send(item);
+        });
+    }
+    if(!req.param('list')){
+        //console.log("------>" + req.param('id') + "<------" )
+        menuItem.findOne({_id: id}, function(err, data){
+            if(err) return console.error(err);
+            //console.log(data)
+            res.send(data);
+        });
+    };
 });
 
 router.post('/saveMenuItem', function(req, res){
