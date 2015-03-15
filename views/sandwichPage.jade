@@ -17,10 +17,10 @@ block content
             input(type="hidden" id="sandwichID" value="select._id")
             div.row
                 div.columns.medium-8
-                    div.wow.bounceInUp(ng-repeat="sandwich in sandwiches")
+                    div.wow.bounceInUp(ng-repeat="sandwich in sandwiches").top10
                         a(ng-mouseover="over(sandwich)" ng-click="sandwichSelect(sandwich)")
                             input(type="hidden")
-                            div.row.top10(dir="rtl")
+                            div.row(dir="rtl")
                                 div.columns.medium-4
                                     img.borderGreen(ng-src="{{sandwich.image}}")
                                 div.columns.medium-8
