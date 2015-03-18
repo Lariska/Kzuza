@@ -1,3 +1,14 @@
-//
-   Created by gabsoz on 3/16/2015.
-
+extends layout
+block content
+    div
+        section(ng-controller="orderCtrl")
+            div.row
+                p {{cart._id}}
+                ul
+                    li(ng-repeat="item in cart.items") {{item}}
+                ul
+                    li(ng-repeat="salad in cart.salads") {{salad}}
+            div.row(ng-repeat="item in itemsInCart")
+                h3 {{item._id}}
+                h3 {{item.name}}
+                h3 {{item.price}}

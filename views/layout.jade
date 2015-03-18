@@ -18,6 +18,7 @@ html(ng-app="angularApp")
         script(src='/js/angular.min.js')
         script(src='/js/angular-resource.min.js')
         script(src='/js/angular-cookies.min.js')
+        script(src='/js/angular-animate.min.js')
         script(src='/js/controller.js')
     body.pat
         div.all
@@ -38,9 +39,9 @@ html(ng-app="angularApp")
                                     a.phone(href="tel:09-7677436")
                                             i.fi-telephone.phone 09-7677436
                             section.top-bar-section
-                                div.right.right10px
+                                div.right
                                     a.right-off-canvas-toggle.fi-list.size-36.right10px
-                                div.right.right10px
+                                div.right
                                     ul
                                         if (!user)
                                             li
@@ -72,7 +73,10 @@ html(ng-app="angularApp")
                                 li
                                     a(href="/contact") צור קשר
                         section.main-section
-                            block content
+                            div#sideCart
+                                include sideOrder
+                            div#content
+                                block content
                         a.exit-off-canvas
             div.leftside
         script(src='/js/wow.min.js')

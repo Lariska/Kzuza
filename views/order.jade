@@ -1,15 +1,12 @@
-extends layout
-block content
-
-    div
-        section(ng-controller="orderCtrl")
-            div
-                p {{cart._id}}
-                ul
-                    li(ng-repeat="item in cart.items") {{item}}
-                ul
-                    li(ng-repeat="salad in cart.salads") {{salad}}
-            div(ng-repeat="item in itemsInCart")
-                p {{item.id}}
-                p {{item.name}}
-                p {{item.price}}
+div#order
+    section(ng-controller="orderCtrl")
+        if(user)
+            h3 #{user}
+        div.row
+            div.columns(ng-repeat="item in itemsInCart")
+                strong {{item.name}}...{{item.price}} ש"ח
+                a(ng-click="deleteItem(item)") &#215
+        div.row
+            div.columns(ng-repeat="salad in saladsInCart")
+                strong סלט {{salad.size}}...{{salad.price}} ש"ח
+                a(ng-click="deleteSalad(salad)") &#215

@@ -6,6 +6,7 @@ var israel_cities = require("./israel_cities");
 var Order = require('../dbModels/Order').Order;
 var Credit = require('../dbModels/Credit');
 var userOrder = require('../dbModels/Order').userOrder;
+var Salad = require('../dbModels/Salad').salad;
 
 //router.post('/login', function(req, res){
 //    var db = req.db;
@@ -151,7 +152,7 @@ router.post('/order/item/:id', function(req, res){
         //cart.items.push(req.param.id);
         cart.save(function(err, doc){
             if(err) return console.error(err);
-            console.log(doc);
+            //console.log(doc);
             res.cookie('cart',doc);
             res.send(doc);
         });
@@ -161,7 +162,7 @@ router.post('/order/item/:id', function(req, res){
             if (err) return console.error(err);
             doc.items.push(req.param('id'));
             doc.save();
-            console.log(doc);
+            //console.log(doc);
             res.cookie('cart',doc);
             res.send(doc);
             //userOrder.update({_id: cart._id}, {items: cart.items}, function(err, doc){})
@@ -169,6 +170,54 @@ router.post('/order/item/:id', function(req, res){
     }
     //res.redirect('/');
     //console.log(cart+" "+req.cookies.cart);
+});
+
+router.post('/order/salad', function(req, res){
+    var cart = req.cookies.cart;
+    var size;
+    switch (req.param('size')) {
+        case 0:
+            size = "קטן";
+            break;
+        case 1:
+            size = "בינוני";
+            break;
+        case 2:
+            size = "גדול";
+            break;
+    }
+    var salad = new Salad({
+        user: req.user ? req.user._id : "" ,
+        //cart: cart ? cart._id : "" ,
+        size: size,
+        ingredients: req.param('ing'),
+        sauce: req.param('suc'),
+        extra: req.param('ex'),
+        price: 27 +  req.param('size')*4 + ( (req.param('suc').length - 2) > 0 ? (req.param('suc').length - 2) : 0 ) * 2 + ( (req.param('ex').length - 1) > 0 ? (req.param('ex').length - 1) : 0 ) * 4
+    });
+    salad.save(function(err, data){
+        if (err) return console.error(err);
+        if(cart) {
+            userOrder.findOne({_id: cart._id}, function(err, doc) {
+                doc.salads.push(data._id);
+                doc.save()
+                res.cookie('cart', doc);
+                res.send(doc);
+                //console.log(doc);
+            });
+        } else {
+            cart = new userOrder({
+                user: req.user ? req.user._id : "",
+                salads: [data._id],
+                items: []
+            });
+            cart.save(function(err, doc){
+                if (err) return console.error(err);
+                res.cookie('cart', doc);
+                res.send(doc);
+            })
+        }
+    });
 });
 
 router.post('/deleteCookie', function(req, res){
@@ -182,7 +231,7 @@ router.get('/contactUs', function(req, res) {
 });
 
 router.get('/order', function(req, res){
-    res.render('order', {title: 'הזמנה', user: req.user});//}, cart: req.cookies.cart });
+    res.render('orderPage', {title: 'הזמנה', user: req.user});//}, cart: req.cookies.cart });
 });
 
 module.exports = router;

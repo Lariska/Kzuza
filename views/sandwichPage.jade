@@ -28,8 +28,4 @@ block content
                                         h3 {{sandwich.name}}...{{sandwich.price}} ש"ח
                                         strong {{sandwich.description}}
                 div.columns.medium-4
-                    p {{select.name}}
-                    p {{cart._id}}
-                    p {{cart.user}}
-                    ul
-                        li(ng-repeat="item in cart.items") {{item}}
+                    include order

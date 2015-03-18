@@ -10,9 +10,11 @@ var ingredientsSchema = new Schema({
 var saladSchema = new Schema({
     user: String,
     cart: String,
+    size: String,
     ingredients: [],
     sauce: [],
-    extra: []
+    extra: [],
+    price: String
 });
 
 //saladSchema.methods.addIng = function(ing){

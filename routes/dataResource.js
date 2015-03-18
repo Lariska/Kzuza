@@ -4,6 +4,7 @@ var menu = require('../dbModels/menu').menu;
 var menuItem = require('../dbModels/menu').menuItem;
 var ingredients = require('../dbModels/Salad').ingredients;
 var userOrder = require('../dbModels/Order').userOrder;
+var salad = require('../dbModels/Salad').salad;
 
 
 router.get('/admin', function(req,res){
@@ -115,12 +116,67 @@ router.post('/saveIngredients', function(req, res){
 
 router.get('/order/:id?', function(req, res){
     var cart = req.cookies.cart;
-    console.log(cart);
-    userOrder.findOne({_id: cart._id}, function(err, order){
+    //console.log(cart);
+    if(cart) {
+        userOrder.findOne({_id: cart._id}, function (err, order) {
+            if (err) return console.error(err);
+            console.log("Order: " + order._id);
+            res.send(order);
+        });
+    }
+});
+
+router.delete('/order/:id', function(req, res){
+    var cart = req.cookies.cart;
+    var removeId = req.param('id');
+    console.log(removeId+"----")
+    if(cart){
+        userOrder.findOne({_id: cart._id}, function(err, order) {
+            if (err) return console.error(err);
+            var idx1 = order.items.indexOf(removeId);
+            if (idx1 !== -1) order.items.splice(idx1, 1);
+            var idx2 = order.salads.indexOf(removeId);
+            if (idx2 !== -1) order.salads.splice(idx2, 1);
+            order.save();
+            res.send(order);
+        });
+    }
+});
+
+router.get('/salad/:id', function(req, res){
+    salad.findOne({_id: req.param('id')}, function(err, data){
         if (err) return console.error(err);
-        console.log(order);
-        res.send(order);
+        res.send(data);
     });
 });
 
+function asincItems(cart, done){
+    var items = [];
+    cart.items.forEach(function(item){
+        menuItem.findOne({_id: item._id}, function(err, doc){
+            items.push(doc);
+        })
+    })
+}
+
+router.get('/fullCart', function(req, res){
+    var cart = req.cookies.cart;
+    if(cart){
+        userOrder.findOne({_id: cart._id}, function(err, doc){
+            if (err) return console.error(err);
+            res.send(doc);
+        });
+    }
+});
+
+
+
 module.exports = router;
+
+
+
+
+
+
+
+

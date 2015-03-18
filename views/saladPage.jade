@@ -7,7 +7,8 @@ block content
                     div.columns.small-2
                         strong {{price}} ש"ח
                     div.small-4
-                        button.button(type="submit") הזמן
+                        a.button(ng-click="sddSalad()") dfgdg
+                        button.button(type="submit") הוסף להזמנה
             section
                 div.row.top10(dir="rtl")
                     fieldset
@@ -36,7 +37,7 @@ block content
                                 ul.side-nav
                                     li.columns.medium-6(ng-repeat="ing in ingredients")
                                         label
-                                            input(type="checkbox" id="{{ing.name}}" name="ingredients" value="{{ing.name}}")
+                                            input(type="checkbox" ng-model="ing$index" id="{{ing.name}}" name="ingredients" value="{{ing.name}}" ng-change="addIng(ing$index, ing._id)")
                                             strong &nbsp {{ing.label}}
                     div#suc.columns.small-4
                         fieldset
@@ -59,5 +60,5 @@ block content
                                 ul.side-nav
                                     li(ng-repeat="ex in extra")
                                         label
-                                            input(type="checkbox" ng-model="ex$index" id="{{ex.name}}" name="extra" value="{{ex.name}}" ng-change="addExtra(ex$index)")
+                                            input(type="checkbox" ng-model="ex$index" id="{{ex.name}}" name="extra" value="{{ex.name}}" ng-change="addExtra(ex$index, ex._id)")
                                             strong &nbsp {{ex.label}}

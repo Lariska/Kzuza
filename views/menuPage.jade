@@ -2,11 +2,11 @@ extends layout
 block content
     div#tabs(ng-controller="menuController")
         div.row(dir="rtl")
-            div.columns.small-4.left-align.medium-3.large-4
+            div.columns.small-4
                 ul.callout(dir="rtl")
                     li.side-nav(ng-repeat="item in menu" dir="rtl")
                         a(href ng-click="setTab($index)")
-                            div.row.pat.borderGreen()
+                            div.row.pat.borderGreen
                                 div.columns.large-6
                                     img(ng-src="{{item.image}}")
                                 div.columns.large-6
@@ -14,7 +14,7 @@ block content
             div.columns.small-8
                 br
                 div.borderGreen.pat
-                    div.wow.slideLeft(ng-repeat="item in menu" dir="rtl")
+                    div(ng-repeat="item in menu" dir="rtl")
                         section(ng-show="isTab($index)")
                             h1 {{item.title}}
                             ul

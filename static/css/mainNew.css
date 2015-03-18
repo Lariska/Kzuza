@@ -198,4 +198,41 @@ a.button {
     background-color: black;
 }
 
+.sticky-menu-tab{
+    position: fixed;
+    height: 50px;
+    width: 150px;
+    left: 5px;
+    top: 100px;
+    text-align: center;
+    background-color: #ffffff;
+    border: solid;
+    border-color: #E4322D;
+    border-radius: 10px;
+}
 
+.sticky-menu-show{
+    position: fixed;
+    left: 5px;
+    top: 100px;
+    text-align: center;
+    background-color: #ffffff;
+    border: solid;
+    border-color: #E4322D;
+    border-radius: 10px;
+}
+
+/*.wow.slideLeft.menu.ng-show{*/
+    /*transition: 0.75s;*/
+    /*opacity: 0;*/
+/*}*/
+/*.wow.slideLeft.menu.ng-show-active {*/
+    /*opacity: 1;*/
+/*}*/
+/*.wow.slideLeft.menu.ng-hide {*/
+    /*transition: 0.75s;*/
+    /*opacity: 1;*/
+/*}*/
+/*.wow.slideLeft.menu.ng-hide-active {*/
+    /*opacity: 0;*/
+/*}*/
