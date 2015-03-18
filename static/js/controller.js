@@ -19,8 +19,8 @@ angularApp.factory('Salad', function($resource){
 });
 
 angularApp.factory('Order', function($resource){
-    //var itm = [];
-    //var sad = [];
+    var itm = [];
+    var sad = [];
     //$resource('/data/order').get( function(data){
     //    data.items.forEach(function(item){
     //        Menu.innerItems.get({id: item}, function(data){
