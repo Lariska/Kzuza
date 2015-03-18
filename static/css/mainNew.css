@@ -18,6 +18,7 @@
 
 .pat{
     background-image: url("/images/pat.png");
+    height: 60rem;
 }
 
 #topBar{
@@ -148,7 +149,7 @@ a.button {
     border-color: #43702F;
     border-radius: 10px;
 }
-.active {
+.tabs .active, .tabs-content .active {
     border: solid;
     border-color: #E4322D;
     border-radius: 10px;
