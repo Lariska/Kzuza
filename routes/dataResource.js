@@ -3,6 +3,8 @@ var router = express.Router();
 var menu = require('../dbModels/menu').menu;
 var menuItem = require('../dbModels/menu').menuItem;
 var ingredients = require('../dbModels/Salad').ingredients;
+var userOrder = require('../dbModels/Order').userOrder;
+var salad = require('../dbModels/Salad').salad;
 
 router.get('/admin', function(req,res){
     res.render('admin');
@@ -47,10 +49,20 @@ router.post('/saveMenu', function(req, res){
 router.get('/menuItem/:id?',function(req, res){
     var id = req.param('id');
     console.log("DATA - " + id);
+    if (req.param('list')) {
+        menuItem.find({titleID: id}, function (err, item) {
+            if (err) return console.error(err);
+            res.send(item);
+        });
+    }
+    if(!req.param('list')){
+        //console.log("------>" + req.param('id') + "<------" )
         menuItem.findOne({_id: id}, function(err, data){
             if(err) return console.error(err);
-        res.send(item);
-    });
+            //console.log(data)
+            res.send(data);
+        });
+    };
 });
 
 router.post('/saveMenuItem', function(req, res){

@@ -35,17 +35,20 @@ block content
          h3  קצוצה בר סלטים היא מסעדת בריאות שבה תוכלו להנות מסלטים טריים וכריכים טעימים ובריאים, אשר מורכבים מירקות טריים יום יום
          h3 קצוצה - גם טעים וגם בריא
       div.leftdiv
-         div.bg.container12
-            ul.scene
-               li.layer(data-depth='0.00')
+        div#bg
+          div.container12
+            ul#scene
+               li.layer(data-depth="0.00")
                   img(src="/images/Group1.png")
-               li.layer(data-depth='0.40')
+               li.layer(data-depth="0.40")
                   img(src="/images/Group2.png")
-               li.layer(data-depth='0.80')
+               li.layer(data-depth="0.80")
                   img(src="/images/Plate.png")
 
-   script(src='/js/homePage.js')
-   //script(src = '/js/parallax.min.js')
-   //script.
+
+   script(src = '/js/parallax.min.js')
+   script.
       var scene = $(document).getElementById('scene');
       var parallax = new Parallax(scene);
+
+   script(src='/js/homePage.js')

@@ -11,6 +11,7 @@ html(ng-app="angularApp")
         link(rel='styleSheet', href='/css/jquery.bxslider.css')
 
         link(rel='stylesheet', href='/css/mainNew.css')
+
         script(src='/js/jquery-1.11.2.min.js')
         script(src='/js/jquery.bxslider.js')
         script(src='/js/modernizr.js')
@@ -19,6 +20,8 @@ html(ng-app="angularApp")
         script(src='/js/angular-animate.min.js')
         script(src='/js/angular-resource.min.js')
         script(src='/js/controller.js')
+        //script(src='/js/flip.js')
+
     body.pat
         div.container
             div.rightside
@@ -38,9 +41,9 @@ html(ng-app="angularApp")
                                     a.phone(href="tel:09-7677436")
                                             i.fi-telephone.phone 09-7677436
                             section.top-bar-section
-                                div.right.right10px
+                                div.right
                                     a.right-off-canvas-toggle.fi-list.size-36.right10px
-                                div.right.right10px
+                                div.right
                                     ul
                                         if (!user)
                                             li
@@ -75,6 +78,9 @@ html(ng-app="angularApp")
                             block content
                         a.exit-off-canvas
             div.leftside
+        script(src='/js/wow.min.js')
+        script new WOW().init();
+        script(src='/js/jquery-1.11.2.min.js')
         script(src='/js/foundation.min.js')
         script $(document).foundation();
         //script $(document).foundation('abide');
