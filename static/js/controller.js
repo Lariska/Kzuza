@@ -71,7 +71,7 @@ angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
 
         });
     });
-    $scope.select = "לא נבחר"
+    $scope.select = "�?�? נבחר"
     $scope.over = function(sandwich){
         $scope.select = sandwich;
     };
@@ -128,6 +128,8 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
         calculatePrice();
     };
 
+    var extrasCount = 0;
+    var extrasPrice = 0;
     $scope.addExtra = function (chack, id) {
         if (chack === true) extrasCount = add(ex, id);
         if (chack === false) extrasCount = remove(ex, id);
@@ -231,26 +233,26 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad, $cookies)
 var menu1 = [{
         selected: true,
         index: 1,
-        title: "סלטים",
+        title: "ס�?טי�?",
         image: "/images/food/salad.jpg",
         items: []
     },{
         selected: false,
         index:2,
-        title: "סנדווצים",
+        title: "סנדווצי�?",
         image: "/images/food/harkava.jpg",
         items: [{
-            name: "סנדוויץ בהרכבה עצמית",
+            name: "סנדוויץ בהרכבה עצ�?ית",
             price:"27",
-            description:"ממרח לבחירה, תוספת לבחירה, ירקות טריים לבחירה"
+            description:"�?�?רח �?בחירה, תוספת �?בחירה, ירקות טריי�? �?בחירה"
         },{
-            name: "סנדוויץ בריאות",
+            name: "סנדוויץ ברי�?ות",
             price:"27",
-            description:"ממרח עגבניות מיובשות, גבינה בולגריפרוסות עגבניהת עלי בזיליקום, נבטים, פיטריות טריות"
+            description:"�?�?רח עגבניות �?יובשות, גבינה בו�?גריפרוסות עגבניהת ע�?י בזי�?יקו�?, נבטי�?, פיטריות טריות"
         },{
             name: "סנדוויץ סביח",
             price:"27",
-            description:"טחינה, חציל קלוי ביצה קשה מלפפון חמוץ"
+            description:"טחינה, חצי�? ק�?וי ביצה קשה �?�?פפו�? ח�?וץ"
         }]
     },{
         selected: false,
@@ -269,12 +271,12 @@ var menu1 = [{
     },{
         selected: false,
         index:4,
-        title: "טוסטים",
+        title: "טוסטי�?",
         image: "/images/food/tost.jpg",
         items: [{
             name:"טוסט גבינה צהובה",
             price:"17",
-            description:"כל תוספת 2 שקלים"
+            description:"כ�? תוספת 2 שק�?י�?"
         }]
     }
 ];

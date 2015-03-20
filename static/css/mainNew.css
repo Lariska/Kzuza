@@ -278,3 +278,29 @@ a.button {
 }
 
 /*HomePage*/
+.up {
+
+}
+
+.down {
+
+}
+
+.rightdiv {
+    float: right;
+    margin-right: 50px;
+    width: 40%;
+}
+
+.leftdiv {
+    width: 40%;
+}
+
+.rightpic {
+    margin-top: 6px;
+    float: right;
+}
+
+.leftpic {
+    float: right;
+}
