@@ -6,7 +6,6 @@ var israel_cities = require("./israel_cities");
 var Order = require('../dbModels/Order').Order;
 var Credit = require('../dbModels/Credit');
 var userOrder = require('../dbModels/Order').userOrder;
-var Salad = require('../dbModels/Salad').salad;
 
 //router.post('/login', function(req, res){
 //    var db = req.db;
@@ -125,11 +124,11 @@ router.get('/menu', function(req, res){
 });
 
 router.get('/sandwich', function(req, res){
-    res.render('sandwichPage', {title: "סנדוויצי�?", user: req.user});
+    res.render('sandwichPage', {title: "סנדוויצים", user: req.user});
 });
 
 router.get('/salad', function(req, res){
-    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
+    res.render('saladPage', {title: "סלטים", user: req.user});
 });
 
 router.get('/contact', function(req, res){
@@ -145,81 +144,28 @@ router.post('/order/item/:id', function(req, res){
     if(!cart){
         console.log("no " + req.param('item')._id);
         if(req.user){
-            cart = new userOrder({user: req.user._id, items: [item], salads: []});
+            cart = new userOrder({user: req.user._id, items: item, salads: []});
         } else {
-            cart = new userOrder({user: "", items: [item], salads: []});
+            cart = new userOrder({user: "", items: item, salads: []});
         }
         //cart.items.push(req.param.id);
-        cart.save(function(err, doc){
+        cart.save(function(err, cart){
             if(err) return console.error(err);
-            //console.log(doc);
-            res.cookie('cart',doc);
-            res.send(doc);
+            //console.log(cart);
+            res.cookie('cart',cart);
+            res.redirect("/");
         });
     } else {
-        console.log("yes " + req.param('item')._id);
+        console.log("yes")
         userOrder.findOne({_id: cart._id}, function(err, doc){
             if (err) return console.error(err);
             doc.items.push(req.param('id'));
             doc.save();
-            //console.log(doc);
-            res.cookie('cart',doc);
-            res.send(doc);
             //userOrder.update({_id: cart._id}, {items: cart.items}, function(err, doc){})
         })
     }
-    //res.redirect('/');
     //console.log(cart+" "+req.cookies.cart);
 });
-
-router.post('/order/salad', function(req, res){
-    var cart = req.cookies.cart;
-    var size;
-    switch (req.param('size')) {
-        case 0:
-            size = "קט�?";
-            break;
-        case 1:
-            size = "בינוני";
-            break;
-        case 2:
-            size = "גדו�?";
-            break;
-    }
-    var salad = new Salad({
-        user: req.user ? req.user._id : "" ,
-        //cart: cart ? cart._id : "" ,
-        size: size,
-        ingredients: req.param('ing'),
-        sauce: req.param('suc'),
-        extra: req.param('ex'),
-        price: 27 +  req.param('size')*4 + ( (req.param('suc').length - 2) > 0 ? (req.param('suc').length - 2) : 0 ) * 2 + ( (req.param('ex').length - 1) > 0 ? (req.param('ex').length - 1) : 0 ) * 4
-    });
-    salad.save(function(err, data){
-        if (err) return console.error(err);
-        if(cart) {
-            userOrder.findOne({_id: cart._id}, function(err, doc) {
-                doc.salads.push(data._id);
-                doc.save()
-                res.cookie('cart', doc);
-                res.send(doc);
-                //console.log(doc);
-            });
-        } else {
-            cart = new userOrder({
-                user: req.user ? req.user._id : "",
-                salads: [data._id],
-                items: []
-            });
-            cart.save(function(err, doc){
-                if (err) return console.error(err);
-                res.cookie('cart', doc);
-                res.send(doc);
-            })
-        }
-    });
-});
-
 router.post('/deleteCookie', function(req, res){
     console.log(req.cookies.cart+" is deleted")
     res.clearCookie('cart');
@@ -228,10 +174,6 @@ router.post('/deleteCookie', function(req, res){
 
 router.get('/contactUs', function(req, res){
     res.render('contactPage', {title: "צור קשר", user: req.user});
-});
-
-router.get('/order', function(req, res){
-    res.render('orderPage', {title: 'הז�?נה', user: req.user});//}, cart: req.cookies.cart });
 });
 
 module.exports = router;

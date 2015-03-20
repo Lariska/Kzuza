@@ -140,7 +140,9 @@ router.post('/forget_password', function(req, res) {
             "from_email": "kzuza@example.com",
             "to": [{ "email": req.body.mail}]
         };
-        mandrill_client.messages.send({"message": message}, function(result) {});
+        mandrill_client.messages.send({"message": message}, function(result) {
+            res.redirect('/');
+        });
     });
 });
 
