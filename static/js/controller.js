@@ -1,5 +1,6 @@
 
-var  angularApp = angular.module('angularApp', ['ngResource', 'ngCookies', 'ngAnimate']);
+var  angularApp = angular.module('angularApp', ['ngResource', 'ngAnimate']);  ///        script(src='/js/angular-cookies.min.js')
+
 
 angularApp.factory('Menu', function($resource){
     //return $resource('/data/menu/:id');//, {id: '@_id'});
@@ -81,7 +82,7 @@ angularApp.controller('menuController',function($scope, Menu) {
         $scope.tab = setTab;
     };
     $scope.isTab = function(selectedTab){
-        return selectedTab===$scope.tab
+        return selectedTab === $scope.tab
     };
 });
 
@@ -93,7 +94,7 @@ angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
 
         });
     });
-    $scope.select = "�?�? נבחר"
+    $scope.select = ""
     $scope.over = function(sandwich){
         $scope.select = sandwich;
     };
@@ -125,7 +126,6 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
     function calculatePrice() {
         $scope.price = sizeP + (size*4) + saucePrice + extrasPrice;
     };
-
     var sizeP = 27;
     var ingCount = 0;
     var sauceCount = 0;
@@ -133,7 +133,8 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
     var extrasCount = 0;
     var extrasPrice = 0;
     var size = 0;
-
+    //var extrasCount = 0;
+    //var extrasPrice = 0;
     $scope.chooseSize = function (priceSize) {
         //sizeP = priceSize;
         size = (priceSize - 27)/4
@@ -152,8 +153,7 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
         calculatePrice();
     };
 
-    var extrasCount = 0;
-    var extrasPrice = 0;
+
     $scope.addExtra = function (chack, id) {
         if (chack === true) extrasCount = add(ex, id);
         if (chack === false) extrasCount = remove(ex, id);
@@ -288,26 +288,26 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad, $cookies)
 var menu1 = [{
         selected: true,
         index: 1,
-        title: "ס�?טי�?",
+        title: "ס�?טי�?",
         image: "/images/food/salad.jpg",
         items: []
     },{
         selected: false,
         index:2,
-        title: "סנדווצי�?",
+        title: "סנדווצי�?",
         image: "/images/food/harkava.jpg",
         items: [{
-            name: "סנדוויץ בהרכבה עצ�?ית",
+            name: "סנדוויץ בהרכבה עצ�?ית",
             price:"27",
-            description:"�?�?רח �?בחירה, תוספת �?בחירה, ירקות טריי�? �?בחירה"
+            description:"�?�?רח �?בחירה, תוספת �?בחירה, ירקות טריי�? �?בחירה"
         },{
-            name: "סנדוויץ ברי�?ות",
+            name: "סנדוויץ ברי�?ות",
             price:"27",
-            description:"�?�?רח עגבניות �?יובשות, גבינה בו�?גריפרוסות עגבניהת ע�?י בזי�?יקו�?, נבטי�?, פיטריות טריות"
+            description:"�?�?רח עגבניות �?יובשות, גבינה בו�?גריפרוסות עגבניהת ע�?י בזי�?יקו�?, נבטי�?, פיטריות טריות"
         },{
             name: "סנדוויץ סביח",
             price:"27",
-            description:"טחינה, חצי�? ק�?וי ביצה קשה �?�?פפו�? ח�?וץ"
+            description:"טחינה, חצי�? ק�?וי ביצה קשה �?�?פפו�? ח�?וץ"
         }]
     },{
         selected: false,
@@ -326,12 +326,12 @@ var menu1 = [{
     },{
         selected: false,
         index:4,
-        title: "טוסטי�?",
+        title: "טוסטי�?",
         image: "/images/food/tost.jpg",
         items: [{
             name:"טוסט גבינה צהובה",
             price:"17",
-            description:"כ�? תוספת 2 שק�?י�?"
+            description:"כ�? תוספת 2 שק�?י�?"
         }]
     }
 ];
