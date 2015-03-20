@@ -72,6 +72,10 @@ router.get('/daily_meal', function(req, res) {
     res.render('daily_meal', { title: 'Kzuza', user: req.user });
 });
 
+router.get('/home', function(req, res) {
+    res.render('home', { title: 'Kzuza', user: req.user });
+});
+
 //TODO: It should be post with passing the meals that user has chosen
 router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
