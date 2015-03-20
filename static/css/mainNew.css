@@ -5,12 +5,25 @@
 /*2ed dark: #2C5F18*/
 /*red: #E4322D*/
 
-body{
-    text-align: right;
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px; /* negative value of footer height */
+    height: 50px;
+    clear:both;
+    background-color: black;
 }
 
 .pat{
+    background-image: url("/images/pat.png");
+    height: 60rem;
+}
 
+#topBar{
+    background-image: url('/images/top3.png');
+    height: 100px;
 }
 
 .saladTop{
@@ -228,34 +241,50 @@ a.button {
     width: 45%;
 }
 
-.map {
+.sticky-menu-tab{
+    position: fixed;
+    height: 50px;
+    width: 150px;
+    left: 5px;
+    top: 100px;
     text-align: center;
+    background-color: #ffffff;
+    border: solid;
+    border-color: #E4322D;
+    border-radius: 10px;
 }
 
-/*HomePage*/
-.up {
-
+.sticky-menu-show{
+    width: 180px;
+    position: fixed;
+    left: 5px;
+    top: 100px;
+    /*text-align: center;*/
+    background-color: #ffffff;
+    border: solid;
+    border-color: #E4322D;
+    border-radius: 10px;
 }
 
-.down {
-
+.name{
+    text-align: right;
+    dir: rtl;
+}
+.price{
+    text-align: left;
 }
 
-.rightdiv {
-    float: right;
-    margin-right: 50px;
-    width: 40%;
-}
-
-.leftdiv {
-    width: 40%;
-}
-
-.rightpic {
-    margin-top: 6px;
-    float: right;
-}
-
-.leftpic {
-    float: right;
-}
+/*.wow.slideLeft.menu.ng-show{*/
+    /*transition: 0.75s;*/
+    /*opacity: 0;*/
+/*}*/
+/*.wow.slideLeft.menu.ng-show-active {*/
+    /*opacity: 1;*/
+/*}*/
+/*.wow.slideLeft.menu.ng-hide {*/
+    /*transition: 0.75s;*/
+    /*opacity: 1;*/
+/*}*/
+/*.wow.slideLeft.menu.ng-hide-active {*/
+    /*opacity: 0;*/
+/*}*/
