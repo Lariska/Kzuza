@@ -8,32 +8,33 @@ block content
                         strong {{price}} ש"ח
                     div.small-4
                         a.button(ng-click="sddSalad()") dfgdg
-                        button.button(type="submit") הוסף �?הז�?נה
+                        button.button(type="submit") הוסף הזמנה
             section
             p {{price}} ש"ח
             div.row.top10(dir="rtl")
                 fieldset
                     legend
-                        h5 גוד�?
+                        h5 גודל הסלט
                     div.columns.small-4
                         div.switch.round.small
                             input(type="radio" id="size1" checked name="size" value="500" ng-click="chooseSize(27)")
                             label(for="size1")
-                            h4 500 �?"�?
+                            h4 500 מ"ל
                     div.columns.small-4
                         div.switch.round.small
                             input(type="radio" id="size2" name="size" value="750" ng-click="chooseSize(31)")
                             label(for="size2")
-                            h4 750 �?"�?
+                            h4 750 מ"ל
                     div.columns.small-4
                         div.switch.round.small
                             input(type="radio" id="size3" name="size" value="1000" ng-click="chooseSize(35)")
                             label(for="size3")
-                            h4 1000 �?"�?
+                            h4 1000 מ"ל
             div.row(dir="rtl")
                 div.columns.small-4
                     fieldset
-                        //legend
+                        legend
+                            h5 מרכיבים לבחירה
                         div.row
                             ul.side-nav
                                 li.columns.medium-6(ng-repeat="ing in ingredients")
@@ -43,9 +44,9 @@ block content
                 div.columns.small-4
                     fieldset
                         legend
-                            h5 2 רטבי�? �?בחירה
+                            h5 2 רטבים לבחירה
                         div
-                            strong.red * כ�? רוטב נוסף 2 ש"ח
+                            strong.red כל רוטב נוסף 2 ש"ח
                             ul.side-nav
                                 li(ng-repeat="suc in sauce")
                                     label
@@ -54,10 +55,10 @@ block content
                 div.columns.small-4
                     fieldset
                         legend
-                            h5 תוספת �?חת �?בחירה
+                            h5 תוספת אחת לבחירה
                         div
-                            //h4 תוספת �?חת �?בחירה
-                            strong.red * כ�? תוספת נוספת 4 ש"ח
+                            //h4 תוספת אחת לבחירה
+                            strong.red כל תוספת נוספת 4 ש"ח
                             ul.side-nav
                                 li(ng-repeat="ex in extra")
                                     label
