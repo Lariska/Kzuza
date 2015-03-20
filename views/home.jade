@@ -11,13 +11,14 @@ block content
             div.row
                 div.large-4.columns.myColumns
                     label
+                        input(name="password", type='password', placeholder="סיסמה", dir="rtl")
                         a(dir="rtl", href="/auth/forget_password") שכחת סיסמה?&nbsp;
                         a(dir="rtl", href="/auth/signup") משתמש חדש?
-                        input(name="password", type='password', placeholder="סיסמה", dir="rtl")
-                    //small.error שם משתמש או סיסמה לא נכונים
+                        //small.error שם משתמש או סיסמה לא נכונים
+                        br
             div.row.center
                 button.button(dir="rtl", type='submit') כניסה
             div.row.center
-                a.button.alert(dir="rtl", href="/auth/google") כניסה עם Gmail
+                a.button.alert(dir="rtl", href="/auth/google") התחבר באמצעות Gamil
             div.row.center
-                a.button.facebook(dir="rtl", href="/auth/facebook") כניסה עם Facebook
+                a.button.facebook(dir="rtl", href="/auth/facebook") התחבר באמצעות Facebook

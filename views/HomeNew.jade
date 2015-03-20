@@ -1,0 +1,51 @@
+extends layout
+block content
+   div.up
+      div.rightpic
+         .slider1
+            div.medium-6.right
+               img.logo3(src="/images/food/balkany.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/pasta.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/tost.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/saladBazim.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/salamon.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/marak.jpg")
+      div.leftpic
+         .slider1
+            div.medium-6.right
+               img.logo3(src="/images/food/tunizay.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/havita.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/kzuza.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/sabich.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/food/tost.jpg")
+            div.medium-6.right
+               img.logo3(src="/images/karih_salomon.jpg")
+
+   div.down
+      div.rightdiv
+         h3  קצוצה בר סלטים היא מסעדת בריאות שבה תוכלו להנות מסלטים טריים וכריכים טעימים ובריאים, אשר מורכבים מירקות טריים יום יום
+         h3 קצוצה - גם טעים וגם בריא
+      div.leftdiv
+         div.bg.container12
+            ul.scene
+               li.layer(data-depth='0.00')
+                  img(src="/images/Group1.png")
+               li.layer(data-depth='0.40')
+                  img(src="/images/Group2.png")
+               li.layer(data-depth='0.80')
+                  img(src="/images/Plate.png")
+
+   script(src='/js/homePage.js')
+   //script(src = '/js/parallax.min.js')
+   //script.
+      var scene = $(document).getElementById('scene');
+      var parallax = new Parallax(scene);

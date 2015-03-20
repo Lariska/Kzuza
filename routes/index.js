@@ -24,7 +24,7 @@ var Salad = require('../dbModels/Salad').salad;
 /* GET New User page. */
 router.get('/', function(req, res) {
     //console.log(req.cookies);
-    res.render('home', { title: 'קצוצה' , user: req.user});
+    res.render('HomeNew', { title: 'קצוצה' });
 });
 
 /* GET logged_in page. */
@@ -125,11 +125,11 @@ router.get('/menu', function(req, res){
 });
 
 router.get('/sandwich', function(req, res){
-    res.render('sandwichPage', {title: "סנדוויצים", user: req.user});
+    res.render('sandwichPage', {title: "סנדוויצי�?", user: req.user});
 });
 
 router.get('/salad', function(req, res){
-    res.render('saladPage', {title: "סלטים", user: req.user});
+    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
 });
 
 router.get('/contact', function(req, res){
@@ -177,13 +177,13 @@ router.post('/order/salad', function(req, res){
     var size;
     switch (req.param('size')) {
         case 0:
-            size = "קטן";
+            size = "קט�?";
             break;
         case 1:
             size = "בינוני";
             break;
         case 2:
-            size = "גדול";
+            size = "גדו�?";
             break;
     }
     var salad = new Salad({
@@ -226,12 +226,12 @@ router.post('/deleteCookie', function(req, res){
     res.redirect('/');
 });
 
-router.get('/contactUs', function(req, res) {
-    res.render('saladPage', {title: "סלטים", user: req.user});
+router.get('/contactUs', function(req, res){
+    res.render('contactPage', {title: "צור קשר", user: req.user});
 });
 
 router.get('/order', function(req, res){
-    res.render('orderPage', {title: 'הזמנה', user: req.user});//}, cart: req.cookies.cart });
+    res.render('orderPage', {title: 'הז�?נה', user: req.user});//}, cart: req.cookies.cart });
 });
 
 module.exports = router;

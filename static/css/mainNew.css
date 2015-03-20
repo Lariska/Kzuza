@@ -5,15 +5,8 @@
 /*2ed dark: #2C5F18*/
 /*red: #E4322D*/
 
-#footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 50px; /* negative value of footer height */
-    height: 50px;
-    clear:both;
-    background-color: black;
+body{
+    text-align: right;
 }
 
 .pat{
@@ -27,6 +20,9 @@
 }
 
 .saladTop{
+    border: 2px solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     background-image: url('/images/topSalad.png');
     height: 85px;
 }
@@ -50,6 +46,8 @@
 .myContent a.button {
     width: 92%;
     margin-top: 0;
+    border: 2px solid;
+    border-radius: 10px;
 }
 
 .myContent a.button.facebook {
@@ -100,6 +98,8 @@ div.myColumns {
 button.button {
     line-height: 0.3rem;
     width: 92%;
+    border: 2px solid;
+    border-radius: 10px;
 }
 
 button.button.small {
@@ -119,9 +119,14 @@ button.button.small {
 .logo1 {
     margin-top: 0;
     margin-bottom: 8px;
+    margin-left: 2px;
     height: 40px;
     border: 2px;
     border-radius: 5px;
+}
+
+.logo3 {
+    height: 500px;
 }
 
 a.button {
@@ -174,29 +179,53 @@ a.button {
     visibility: hidden;
 }
 
-.all {
+.container {
     height: 100%;
     width: 100%;
+    background-color: #458c6b;
 }
 
 .rightside {
-    height: 100%;
-    width: 10%;
+    height: 2700px;
+    min-height: 100%;
+    width: 15%;
     float: right;
-    background-color: black;
+    background-color: #458c6b;
+
 }
 
 .middleside {
-    height: 100%;
-    width: 80%;
+    border: 2px;
+    border-radius: 5px;
+    margin-top: 50px;
+    height: 2650px;
+    min-height: 100%;
+    width: 70%;
     float: right;
+    background-color: #ddffdd;
+    background-image: url("/images/pat.png");
 }
 
 .leftside {
-    height: 100%;
-    width: 10%;
+    height: 2700px;
+    min-height: 100%;
+    width: 15%;
     float: right;
-    background-color: black;
+    background-color: #458c6b;
+}
+
+/*contactUsPage*/
+.contact {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.ouraddress {
+    margin-right: 53px;
+    float: right;
+    height: 10%;
+    width: 45%;
 }
 
 .sticky-menu-tab{
@@ -237,3 +266,15 @@ a.button {
 /*.wow.slideLeft.menu.ng-hide-active {*/
     /*opacity: 0;*/
 /*}*/
+
+.submitform {
+    float: right;
+    height: 10%;
+    width: 45%;
+}
+
+.map {
+    text-align: center;
+}
+
+/*HomePage*/

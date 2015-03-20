@@ -21,7 +21,7 @@ html(ng-app="angularApp")
         script(src='/js/angular-animate.min.js')
         script(src='/js/controller.js')
     body.pat
-        div.all
+        div.container
             div.rightside
             div.middleside
                 div.top-bar.saladTop
@@ -45,7 +45,7 @@ html(ng-app="angularApp")
                                     ul
                                         if (!user)
                                             li
-                                                a(href='#' data-reveal-id="loginModal") Login
+                                                a(href='#' data-reveal-id="loginModal") התחבר
                                                 div#loginModal.reveal-modal.medium(data-reveal)
                                                     include ./tabs.jade
                                                     a.close-reveal-modal &#215
@@ -58,6 +58,8 @@ html(ng-app="angularApp")
                             ul.off-canvas-list
                                 li
                                     a(href="/") דף הבית
+                                li
+                                    a(href="/home") התחבר
                                 li
                                     a(href="/") אזור אישי
                                 li
