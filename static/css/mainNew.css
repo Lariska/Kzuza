@@ -20,7 +20,9 @@
     background-image: url("/images/pat.png");
     height: 60rem;
 }
-
+.pat.borderGreen{
+    height: auto;
+}
 #topBar{
     background-image: url('/images/top3.png');
     height: 100px;

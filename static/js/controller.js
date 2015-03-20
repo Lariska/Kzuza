@@ -269,10 +269,14 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad, $cookies)
         $scope.items.splice(idx, 1);
         Order.cart.remove({id: item._id}, function(doc){});
     };
-    $scope.items.forEach(function(item){
-        $scope.price += item.price;
-        $scope.num++;
-    });
+    $scope.deleteSalad = function(salad){
+        var idx = $scope.salads.indexOf(salad);
+        $scope.salads.splice(idx, 1);
+    };
+    //$scope.items.forEach(function(item){
+    //    $scope.price += item.price;
+    //    $scope.num++;
+    //});
     $scope.menu = false;
     $scope.open = function(){ $scope.menu = true };
     $scope.close = function(){ $scope.menu = false };

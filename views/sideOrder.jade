@@ -11,4 +11,9 @@ div#sideOrder
                     a(ng-click="deleteItem(item)") &#215
                     strong {{item.name}}
                     strong {{item.price}}
+            ul
+                li(ng-repeat="salad in salads")
+                    a(ng-click="deleteSalad(salad)") &#215
+                    strong {{salad.name}}
+                    strong {{salad.price}}
             strong {{price}}
