@@ -5,6 +5,10 @@
 /*2ed dark: #2C5F18*/
 /*red: #E4322D*/
 
+body{
+    text-align: right;
+}
+    
 #footer {
     position: fixed;
     bottom: 0;
@@ -78,7 +82,6 @@
 }
 
 /* take_order page */
-
 .take_order {
     text-align: right;
 }
