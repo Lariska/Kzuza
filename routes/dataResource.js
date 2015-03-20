@@ -51,7 +51,6 @@ router.get('/menuItem/:id?',function(req, res){
             if(err) return console.error(err);
         res.send(item);
     });
-    };
 });
 
 router.post('/saveMenuItem', function(req, res){
