@@ -246,6 +246,38 @@ a.button {
     width: 45%;
 }
 
+.map {
+    text-align: center;
+}
+
+/*HomePage*/
+.up {
+
+}
+
+.down {
+
+}
+
+.rightdiv {
+    float: right;
+    margin-right: 50px;
+    width: 40%;
+}
+
+.leftdiv {
+    width: 40%;
+}
+
+.rightpic {
+    margin-top: 6px;
+    float: right;
+}
+
+.leftpic {
+    float: right;
+}
+
 .sticky-menu-tab{
     position: fixed;
     height: 50px;
