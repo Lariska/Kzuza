@@ -7,4 +7,8 @@ div#sideOrder
             a(ng-click="close()") close
             //h5 {{cart}}
             ul
-                li(ng-repeat="item in items") {{item.name}}
+                li(ng-repeat="item in items")
+                    a(ng-click="deleteItem(item)") &#215
+                    strong {{item.name}}
+                    strong {{item.price}}
+            strong {{price}}

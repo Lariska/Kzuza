@@ -6,7 +6,6 @@ var ingredients = require('../dbModels/Salad').ingredients;
 var userOrder = require('../dbModels/Order').userOrder;
 var salad = require('../dbModels/Salad').salad;
 
-
 router.get('/admin', function(req,res){
     res.render('admin');
 });
@@ -34,7 +33,6 @@ router.get('/menu/:name?', function(req, res){
         });
     }
 });
-
 
 router.post('/saveMenu', function(req, res){
     var menuItem = new menu({title: req.param('title'), image: req.param('image'), items:[]});
@@ -168,8 +166,6 @@ router.get('/fullCart', function(req, res){
         });
     }
 });
-
-
 
 module.exports = router;
 

@@ -21,6 +21,8 @@ angularApp.factory('Salad', function($resource){
 angularApp.factory('Order', function($resource){
     var itm = [];
     var sad = [];
+    var num = 0;
+    var prc = 0;
     //$resource('/data/order').get( function(data){
     //    data.items.forEach(function(item){
     //        Menu.innerItems.get({id: item}, function(data){
@@ -38,7 +40,27 @@ angularApp.factory('Order', function($resource){
         cart: $resource('/data/order/:id/:salad', {id: '@_id'}),
         fullCart: $resource('/data/fullCart'),
         items: itm,
-        salads: sad
+        salads: sad,
+        //numOfItm: num,
+        //price: prc,
+        //numOfItems: function() {return ++num},
+        //addPrice: function(prc) {return this.price =+ prc},
+        addSandwich: function(sandwich){
+            itm.push(sandwich);
+            //this.price = this.addPrice(sandwich.price);
+            //this.numOfItm = this.numOfItems();
+        }
+        //},
+        //addItem: function(){ return ++num; },
+        //price: function(){ var total = 0;
+        //    for( itemm in itm){
+        //        total += itemm.price;
+        //    }
+        //    for( saladd in sad ){
+        //        total += saladd.price;
+        //    }
+        //    return total;
+        //}
     }
 });
 
@@ -76,7 +98,9 @@ angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
         $scope.select = sandwich;
     };
     $scope.sandwichSelect = function(sandwich){
-        Order.items.push(sandwich);
+        //Order.items.push(sandwich);
+        Order.addSandwich(sandwich);
+        //Order.addItem();
         $scope.select = sandwich;
         $http.post('/order/item/' + sandwich._id, {item: sandwich})
             .success(function(data, status, headers, config){
@@ -203,29 +227,56 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad, $cookies)
     //Order.items = itm;
     //Order.salads = sad;
 
+    //var max = 0;
+
+    //var t = Order.items;
+    $scope.num = 0;
+    $scope.price = 0;
+
     $scope.items = Order.items;
     $scope.salads = Order.salads;
-
+    //var len = 0;
+    //$scope.num = 0;
     Order.cart.get( function(data){
         $scope.cart = data;
         data.items.forEach(function(item){
             Menu.innerItems.get({id: item}, function(data){
-                Order.items.push(data);
+                Order.addSandwich(data);
+                //Order.items.push(data);
+                //Order.addItem();
+                //len++;
+                //Order.numOfItems++;
+                //$scope.num++;
+                //$scope.num = Order.addItem();
             });
         });
         data.salads.forEach(function(item){
             Salad.salad.get({id: item}, function(data){
                 Order.salads.push(data);
+                //len++
+                //Order.numOfItems++;
+                //$scope.num++
             });
         });
     });
+    //var int =
+    //$scope.num = len;
 
-    $scope.num = 0 + Order.items.length;// + $scope.salads.length;
-
+    $scope.deleteItem = function(item){
+        var idx = $scope.items.indexOf(item);
+        $scope.items.splice(idx, 1);
+        Order.cart.remove({id: item._id}, function(doc){});
+    };
+    $scope.items.forEach(function(item){
+        $scope.price += item.price;
+        $scope.num++;
+    });
     $scope.menu = false;
     $scope.open = function(){ $scope.menu = true };
     $scope.close = function(){ $scope.menu = false };
-
+    //$scope.num = t.length;
+    //$scope.num = Order.numOfItems();
+    //$scope.price = Order.price;
 });
 
 var menu1 = [{

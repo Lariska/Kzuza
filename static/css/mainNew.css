@@ -213,14 +213,23 @@ a.button {
 }
 
 .sticky-menu-show{
+    width: 180px;
     position: fixed;
     left: 5px;
     top: 100px;
-    text-align: center;
+    /*text-align: center;*/
     background-color: #ffffff;
     border: solid;
     border-color: #E4322D;
     border-radius: 10px;
+}
+
+.name{
+    text-align: right;
+    dir: rtl;
+}
+.price{
+    text-align: left;
 }
 
 /*.wow.slideLeft.menu.ng-show{*/
