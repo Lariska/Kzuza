@@ -36,16 +36,16 @@ body{
     text-align: right;
     font-family: nootregular;
 }
-    
+
 #footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-top: 50px; /* negative value of footer height */
-    height: 50px;
-    clear:both;
-    background-color: black;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 50px; /* negative value of footer height */
+        height: 50px;
+        clear:both;
+        background-color: black;
 }
 
 .pat{
@@ -54,10 +54,6 @@ body{
 }
 .pat.borderGreen{
     height: auto;
-}
-#topBar{
-    background-image: url('/images/top3.png');
-    height: 100px;
 }
 
 .saladTop{
