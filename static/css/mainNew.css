@@ -304,6 +304,7 @@ a.button {
 
 .leftpic {
     float: right;
+    margin-top: 3px;
 }
 
 .sticky-menu-tab{
