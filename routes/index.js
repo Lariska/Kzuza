@@ -81,7 +81,8 @@ router.get('/home', function(req, res) {
 router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
     cities.unshift("בחר עיר");
-    res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities });
+    var price =  req.cookies.cart.price;
+    res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities , price: price});
 });
 
 
