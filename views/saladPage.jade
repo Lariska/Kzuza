@@ -38,7 +38,7 @@ block content
                             ul.side-nav
                                 li.columns.medium-6(ng-repeat="ing in ingredients")
                                     label
-                                        input(type="checkbox" id="{{ing.name}}" name="ingredients" value="{{ing.name}}")
+                                        input(type="checkbox" ng-model="ing$index" id="{{ing.name}}" name="ingredients" value="{{ing.name}}" ng-change="addIng(ing$index, ing._id)")
                                         strong &nbsp {{ing.label}}
                 div.columns.small-4
                     fieldset
@@ -49,7 +49,7 @@ block content
                             ul.side-nav
                                 li(ng-repeat="suc in sauce")
                                     label
-                                        input(type="checkbox" ng-model="suc$index" id="{{suc.name}}" name="sauce" value="{{suc.name}}" ng-change="addSauce(suc$index)")
+                                        input(type="checkbox" ng-model="suc$index" id="{{suc.name}}" name="sauce" value="{{suc.name}}" ng-change="addSauce(suc$index, suc._id)")
                                         strong &nbsp {{suc.label}}
                 div.columns.small-4
                     fieldset
@@ -61,5 +61,5 @@ block content
                             ul.side-nav
                                 li(ng-repeat="ex in extra")
                                     label
-                                        input(type="checkbox" ng-model="ex$index" id="{{ex.name}}" name="extra" value="{{ex.name}}" ng-change="addExtra(ex$index)")
+                                        input(type="checkbox" ng-model="ex$index" id="{{ex.name}}" name="extra" value="{{ex.name}}" ng-change="addExtra(ex$index, ex._id)")
                                         strong &nbsp {{ex.label}}

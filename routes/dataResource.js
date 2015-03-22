@@ -4,7 +4,7 @@ var menu = require('../dbModels/menu').menu;
 var menuItem = require('../dbModels/menu').menuItem;
 var ingredients = require('../dbModels/Salad').ingredients;
 var userOrder = require('../dbModels/Order').userOrder;
-var salad = require('../dbModels/Salad').salad;
+var Salad = require('../dbModels/Salad').salad;
 
 router.get('/admin', function(req,res){
     res.render('admin');
@@ -142,9 +142,65 @@ router.delete('/order/:id', function(req, res){
 });
 
 router.get('/salad/:id', function(req, res){
-    salad.findOne({_id: req.param('id')}, function(err, data){
+    Salad.findOne({_id: req.param('id')}, function(err, data){
         if (err) return console.error(err);
+        //console.log(data);
         res.send(data);
+    });
+});
+
+router.post('/salad/:id?', function(req, res){
+    var cart = req.cookies.cart;
+    var size;
+    //var saladP = req.param('salad');
+    //console.log(saladP);
+    //console.log("size: "+ req.param('size') + "ing: "+ req.param('ing'))
+    //return;
+    switch (req.param('size')) {
+        case 0:
+            size = "קטן";
+            break;
+        case 1:
+            size = "בינוני";
+            break;
+        case 2:
+            size = "גדול";
+            break;
+    }
+    //console.log(size)
+    var salad = new Salad({
+        user: req.user ? req.user._id : "",
+        size: size,
+        ingredients: req.param('ing'),
+        sauce: req.param('suc'),
+        extra: req.param('ex'),
+        price: 27 +  req.param('size')*4 + ( (req.param('suc').length - 2) > 0 ? (req.param('suc').length - 2) : 0 ) * 2 + ( (req.param('ex').length - 1) > 0 ? (req.param('ex').length - 1) : 0 ) * 4
+    });
+    //console.log(salad);
+    salad.save(function(err, saladF){
+        if (err) return console.error(err);
+        if(cart){
+            userOrder.findOne({_id: cart._id}, function(err, cartF){
+                cartF.salads.push(saladF._id);
+                cartF.save();
+                res.cookie('cart', cartF);
+                //console.log(saladF)
+                res.send(saladF);
+            });
+        } else {
+            cart = new userOrder({
+                user: req.user ? req.user._id : "",
+                salads : [],
+                items: []
+            });
+            cart.salads.push(saladF._id);
+            cart.save(function(err, cartF){
+                if (err) return console.error(err);
+                res.cookie('cart', cartF);
+                //console.log(saladF);
+                res.send(saladF);
+            });
+        }
     });
 });
 

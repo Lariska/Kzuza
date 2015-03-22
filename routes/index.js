@@ -6,6 +6,7 @@ var israel_cities = require("./israel_cities");
 var Order = require('../dbModels/Order').Order;
 var Credit = require('../dbModels/Credit');
 var userOrder = require('../dbModels/Order').userOrder;
+var Salad = require('../dbModels/Salad').salad;
 
 //router.post('/login', function(req, res){
 //    var db = req.db;
@@ -169,6 +170,54 @@ router.post('/order/item/:id', function(req, res){
     }
     //console.log(cart+" "+req.cookies.cart);
 });
+
+router.post('/order/salad', function(req, res){
+    var cart = req.cookies.cart;
+    var size;
+    switch (req.param('size')) {
+        case 0:
+            size = "קטן";
+            break;
+        case 1:
+            size = "בינוני";
+            break;
+        case 2:
+            size = "גדול";
+            break;
+    }
+    var salad = new Salad({
+        user: req.user ? req.user._id : "",
+        size: size,
+        ingredients: req.param('ing'),
+        sauce: req.param('suc'),
+        extra: req.param('ex'),
+        price: 27 +  req.param('size')*4 + ( (req.param('suc').length - 2) > 0 ? (req.param('suc').length - 2) : 0 ) * 2 + ( (req.param('ex').length - 1) > 0 ? (req.param('ex').length - 1) : 0 ) * 4
+    });
+    salad.save(function(err, saladF){
+        if (err) return console.error(err);
+        if(cart){
+            userOrder.findOne({_id: cart._id}, function(err, cartF){
+                cartF.salads.push(saladF);
+                cartF.save();
+                res.cookie('cart', cartF);
+                res.send(saladF);
+            });
+        } else {
+            cart = new userOrder({
+                user: req.user ? req.user._id : "",
+                salads : [],
+                items: []
+            });
+            cart.salads.push(saladF);
+            cart.save(function(err, cartF){
+                if (err) return console.error(err);
+                res.cookie('cart', cartF);
+                res.send(saladF);
+            });
+        }
+    });
+});
+
 router.post('/deleteCookie', function(req, res){
     console.log(req.cookies.cart+" is deleted")
     res.clearCookie('cart');

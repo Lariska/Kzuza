@@ -22,20 +22,6 @@ angularApp.factory('Salad', function($resource){
 angularApp.factory('Order', function($resource){
     var itm = [];
     var sad = [];
-    var num = 0;
-    var prc = 0;
-    //$resource('/data/order').get( function(data){
-    //    data.items.forEach(function(item){
-    //        Menu.innerItems.get({id: item}, function(data){
-    //            this.items.push(data);
-    //        });
-    //    });
-    //    data.salads.forEach(function(item){
-    //        Salad.salad.get({id: item}, function(data){
-    //            sad.push(data);
-    //        });
-    //    });
-    //});
 
     return{
         cart: $resource('/data/order/:id/:salad', {id: '@_id'}),
@@ -50,7 +36,11 @@ angularApp.factory('Order', function($resource){
             itm.push(sandwich);
             //this.price = this.addPrice(sandwich.price);
             //this.numOfItm = this.numOfItems();
+        },
+        addSalad: function(salad){
+            sad.push(salad);
         }
+
         //},
         //addItem: function(){ return ++num; },
         //price: function(){ var total = 0;
@@ -161,12 +151,17 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
     };
 
     $scope.sddSalad = function(){
-        $http.post('/order/salad', {size: size, ing: ing, suc: suc, ex: ex, price: $scope.price})
-            .success(function(data, status, headers, config){
-                //todo: push salad correct
-                Order.salads.push(data.salads);
-                $scope.cart = data;
-            });
+        //var salad = {size: size, ingredients: ing, sauce: suc, extra: ex};
+        Salad.salad.save( {size: size, ing: ing, suc: suc, ex: ex, price: $scope.price}, function(data){
+            Order.addSalad(data);
+        });
+        //$http.post('/order/salad', {size: size, ing: ing, suc: suc, ex: ex, price: $scope.price})
+        //    .success(function(data, status, headers, config){
+        //        //todo: push salad correct
+        //        //Order.salads.push(data.salads);
+        //        Order.addSalad(data);
+        //        //$scope.cart = data;
+        //    });
     };
 
     function add(type, item){
@@ -185,7 +180,7 @@ angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
 
 });
 
-angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order, $cookies){
+angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order){    ///, $cookies
     //var cartP = $cookies.get('cart');
     var items = [];
     var salads = [];
@@ -222,66 +217,42 @@ angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order, $cookies
     };
 });
 
-angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad, $cookies){
-    //var itm = [];
-    //var sad = [];
-    //Order.items = itm;
-    //Order.salads = sad;
+angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad){      ////$cookies
 
-    //var max = 0;
-
-    //var t = Order.items;
-    $scope.num = 0;
-    $scope.price = 0;
 
     $scope.items = Order.items;
     $scope.salads = Order.salads;
-    //var len = 0;
-    //$scope.num = 0;
+
     Order.cart.get( function(data){
         $scope.cart = data;
         data.items.forEach(function(item){
-            Menu.innerItems.get({id: item}, function(data){
-                Order.addSandwich(data);
-                //Order.items.push(data);
-                //Order.addItem();
-                //len++;
-                //Order.numOfItems++;
-                //$scope.num++;
-                //$scope.num = Order.addItem();
+            Menu.innerItems.get({id: item}, function(itmData){
+                Order.addSandwich(itmData);
             });
         });
-        data.salads.forEach(function(item){
-            Salad.salad.get({id: item}, function(data){
-                Order.salads.push(data);
-                //len++
-                //Order.numOfItems++;
-                //$scope.num++
+        data.salads.forEach(function(salad){
+            //confirm(salad);
+            Salad.salad.get({id: salad}, function(salData){
+                Order.addSalad(salData);
             });
         });
     });
-    //var int =
-    //$scope.num = len;
 
     $scope.deleteItem = function(item){
         var idx = $scope.items.indexOf(item);
         $scope.items.splice(idx, 1);
         Order.cart.remove({id: item._id}, function(doc){});
     };
+
     $scope.deleteSalad = function(salad){
         var idx = $scope.salads.indexOf(salad);
         $scope.salads.splice(idx, 1);
     };
-    //$scope.items.forEach(function(item){
-    //    $scope.price += item.price;
-    //    $scope.num++;
-    //});
+
     $scope.menu = false;
     $scope.open = function(){ $scope.menu = true };
     $scope.close = function(){ $scope.menu = false };
-    //$scope.num = t.length;
-    //$scope.num = Order.numOfItems();
-    //$scope.price = Order.price;
+
 });
 
 var menu1 = [{

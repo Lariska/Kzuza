@@ -1,19 +1,14 @@
 div#sideOrder
     section(ng-controller="cartCtrl")
         div.sticky-menu-tab(ng-hide="menu")
-            a(ng-click="open()")
-                h3 somting ({{num}})
+            a(ng-click="open()") open
         div.sticky-menu-show(ng-show="menu")
             a(ng-click="close()") close
-            //h5 {{cart}}
             ul
                 li(ng-repeat="item in items")
                     a(ng-click="deleteItem(item)") &#215
-                    strong {{item.name}}
-                    strong {{item.price}}
+                    p {{item.name}} ... {{item.price}} ש"ח
             ul
                 li(ng-repeat="salad in salads")
                     a(ng-click="deleteSalad(salad)") &#215
-                    strong {{salad.name}}
-                    strong {{salad.price}}
-            strong {{price}}
+                    p {{salad.size}} ... {{salad.price}} ש"ח

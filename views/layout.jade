@@ -75,7 +75,11 @@ html(ng-app="angularApp")
                                 li
                                     a(href="/contact") צור קשר
                         section.main-section
-                            block content
+                            div#sideCart
+                                include sideOrder
+                            div#content
+                                block content
+                        a.exit-off-canvas
             div.leftside
         script(src='/js/wow.min.js')
         script new WOW().init();

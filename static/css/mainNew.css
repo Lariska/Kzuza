@@ -344,6 +344,15 @@ button.button.contact {
     text-align: left;
 }
 
+.sample-show-hide {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+    opacity:0;
+}
+
 /*.wow.slideLeft.menu.ng-show{*/
     /*transition: 0.75s;*/
     /*opacity: 0;*/
