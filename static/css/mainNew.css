@@ -254,7 +254,6 @@ a.button {
 .contact {
     height: 100%;
     width: 100%;
-    margin-bottom: 10px;
 }
 
 .ouraddress {
@@ -272,6 +271,7 @@ a.button {
 
 .map {
     text-align: center;
+    margin-top: 300px;
 }
 
 /*HomePage*/
