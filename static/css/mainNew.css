@@ -88,10 +88,13 @@ label{
     margin-top: 0;
     border: 2px solid;
     border-radius: 10px;
+    font-family: nootregular;
 }
 
 .myContent a.button.facebook {
     background-color: #47639E;
+    font-family: nootregular;
+
 }
 
 /*daily_meal page*/
