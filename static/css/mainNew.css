@@ -98,6 +98,10 @@ label {
 
 }
 
+#content .up {
+    float: left;
+}
+
 /*daily_meal page*/
 .daily_meal {
     text-align: center;
