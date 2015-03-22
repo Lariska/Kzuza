@@ -5,19 +5,19 @@ block content
 
    div.contact
       div.submitform
-         form(action='/auth/contact/', method='post')
+         form(action='/index/contact/', method='post')
             div.row
                div.large-4.columns.myColumns
-                  label(for='name') שם:
-                     input(type='text',name='name',placeholder='שם מלא', id='name')
+                  label(for='name') :שם
+                     input(type='text',name='name',placeholder='שם מלא', id='name').text-right
             div.row
                div.large-4.columns.myColumns
-                  label(for='email') אימייל:
-                     input(type='text',name='email', placeholder='אימייל', id='email')
+                  label(for='email') :אימייל
+                     input(type='text',name='email', placeholder='אימייל', id='email').text-right
             div.row
                div.large-4.columns.myColumns
-                  label(for='email') הודעה:
-                     input(type='text',name='email', placeholder='', id='email')
+                  label(for='email') :הודעה
+                     input(type='text',name='email', placeholder='הודעה', id='email').text-right
             input(type='submit',name='submit',value='Submit').submit-button
       div.ouraddress
          h4 האומנות 5, נתניה

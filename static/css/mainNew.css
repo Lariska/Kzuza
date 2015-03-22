@@ -37,6 +37,9 @@ body{
     font-family: nootregular;
 }
 
+label{
+    font-family: nootregular;
+}
 #footer {
         position: fixed;
         bottom: 0;
@@ -136,6 +139,7 @@ button.button {
     width: 92%;
     border: 2px solid;
     border-radius: 10px;
+    font-family: nootregular;
 }
 
 button.button.small {
@@ -210,6 +214,7 @@ a.button {
 .labelT {
     background-color: #43702F;
     color: #ffffff;
+
 }
 .sandwichStyle {
     visibility: hidden;
@@ -254,6 +259,7 @@ a.button {
 .contact {
     height: 100%;
     width: 100%;
+    text-align: right;
 }
 
 .ouraddress {
