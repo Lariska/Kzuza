@@ -140,6 +140,10 @@ router.get('/contact', function(req, res){
     res.render('contactPage', {title: "צור קשר", user: req.user});
 });
 
+router.get('/recommendations', function(req, res){
+    res.render('recommendationsPage', {title: "צור קשר", user: req.user});
+});
+
 router.post('/order/item/:id', function(req, res){
     //res.clearCookie('cart');
     var cart = req.cookies.cart;
