@@ -23,7 +23,7 @@ var userOrder = require('../dbModels/Order').userOrder;
 /* GET New User page. */
 router.get('/', function(req, res) {
     //console.log(req.cookies);
-    res.render('HomeNew', { title: 'קצוצה' });
+    res.render('Home', { title: 'קצוצה' });
 });
 
 /* GET logged_in page. */
