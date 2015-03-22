@@ -13,7 +13,7 @@ block content
         div.medium-4.columns
             form(method="post" action="/data/saveMenuItem" ng-controller="menuController")
                 fieldset
-                    legend פריטי�?
+                    legend פריטים
                     P select class
                         select(id="titleID" name="titleID")
                             option(ng-repeat="item in menu" value="{{item._id}}") {{item.title}}
@@ -29,7 +29,7 @@ block content
         div.medium-4.columns
             form(method="post", action="/data/saveIngredients")
                 fieldset
-                    legend �?רכיבי�?
+                    legend מרכיבים
                     p select type
                         select(id="type", name="type")
                             option(value="ingredients") ingredients
@@ -44,5 +44,5 @@ block content
         div.columns
             form(method="post" action="/deleteCookie")
                 fieldset
-                    legend �?חק עוגיה
+                    legend מחק עוגיה
                     input(type="submit")
