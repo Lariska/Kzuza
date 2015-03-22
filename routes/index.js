@@ -6,8 +6,6 @@ var israel_cities = require("./israel_cities");
 var Order = require('../dbModels/Order').Order;
 var Credit = require('../dbModels/Credit');
 var userOrder = require('../dbModels/Order').userOrder;
-var mandrill = require('mandrill-api/mandrill');
-var mandrill_client = new mandrill.Mandrill('Yud7ibdLRCJrr1OH9jNuGA');
 
 //router.post('/login', function(req, res){
 //    var db = req.db;
@@ -140,20 +138,6 @@ router.get('/salad', function(req, res){
 router.get('/contact', function(req, res){
     res.render('contactPage', {title: "צור קשר", user: req.user});
 });
-
-router.post('/contact', function(req, res) {
-    User.findOne({'username':req.body.username},function(err, user) {
-        var message = {
-            "html": "<p dir='rtl'>" + " הסיסמא שלך לאתר קצוצה: " + user.password + "</p>",
-            "subject": "קצוצה בר סלטים",
-            "from_email": "kzuza@example.com",
-            "to": [{ "email": req.body.mail}]
-        };
-        mandrill_client.messages.send({"message": message}, function(result) {});
-    });
-});
-
-
 
 router.post('/order/item/:id', function(req, res){
     //res.clearCookie('cart');
