@@ -267,7 +267,8 @@ a.button {
 }
 
 .ouraddress {
-    margin-right: 53px;
+    margin-right: 70px;
+    margin-top: 30px;
     float: right;
     height: 10%;
     width: 45%;
@@ -279,20 +280,17 @@ a.button {
     width: 45%;
 }
 
+button.button.contact {
+    text-align: center;
+    margin-right: 20px;
+}
+
 .map {
     text-align: center;
-    margin-top: 300px;
+    margin-top: 400px;
 }
 
 /*HomePage*/
-.up {
-
-}
-
-.down {
-
-}
-
 .rightdiv {
     float: right;
     margin-right: 50px;
