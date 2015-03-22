@@ -129,11 +129,11 @@ router.get('/menu', function(req, res){
 });
 
 router.get('/sandwich', function(req, res){
-    res.render('sandwichPage', {title: "סנדוויצי�?", user: req.user});
+    res.render('sandwichPage', {title: "סנדוויצ'ים", user: req.user});
 });
 
 router.get('/salad', function(req, res){
-    res.render('saladPage', {title: "ס�?טי�?", user: req.user});
+    res.render('saladPage', {title: "סלטים", user: req.user});
 });
 
 router.get('/contact', function(req, res){
@@ -176,13 +176,13 @@ router.post('/order/salad', function(req, res){
     var size;
     switch (req.param('size')) {
         case 0:
-            size = "קט�?";
+            size = "קטן";
             break;
         case 1:
             size = "בינוני";
             break;
         case 2:
-            size = "גדו�?";
+            size = "גדול";
             break;
     }
     var salad = new Salad({

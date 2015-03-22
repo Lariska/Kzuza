@@ -18,7 +18,7 @@ block content
                         section.sample-show-hide(ng-show="isTab($index)")
                             h1 {{item.title}}
                             ul
-                                li(ng-repeat="innerItem in item.items")
+                                li(ng-repeat="innerItem in item.items" ng-click="addItem(innerItem)")
                                     a
                                         ins
                                             h3 {{innerItem.name}} .... {{innerItem.price}} ש"ח

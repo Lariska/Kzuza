@@ -55,7 +55,7 @@ angularApp.factory('Order', function($resource){
     }
 });
 
-angularApp.controller('menuController',function($scope, Menu) {
+angularApp.controller('menuController',function($scope, Menu, Order) {
 
     $scope.tab = 0;
 
@@ -73,6 +73,12 @@ angularApp.controller('menuController',function($scope, Menu) {
     };
     $scope.isTab = function(selectedTab){
         return selectedTab===$scope.tab
+    };
+
+    $scope.addItem = function(item){
+        if(item.titleID = "54f74f7133766c581b837870") {
+            Order.addSandwich(item);
+        }
     };
 });
 
@@ -100,7 +106,7 @@ angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
     };
 });
 
-angularApp.controller('saladCtrl', function ($scope, Salad, $http) {
+angularApp.controller('saladCtrl', function ($scope, Salad, Order, $http) {
     Salad.ingredients.query({type: 'ingredients'}, function (data) {
         $scope.ingredients = data;
     });

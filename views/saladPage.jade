@@ -1,14 +1,14 @@
 extends layout
 block content
     div(ng-controller="saladCtrl")
-        form#saladForm(method="post", action="/addSalad")
+        form#saladForm()
             section
                 div.row
                     div.columns.small-2
                         strong {{price}} ש"ח
                     div.small-4
-                        a.button(ng-click="sddSalad()") dfgdg
-                        button.button(type="submit") הוסף הזמנה
+                        //a.button(ng-click="sddSalad()") dfgdg
+                        button.button(ng-click="addSalad()") הוסף הזמנה
             section
             div.row.top10(dir="rtl")
                 fieldset
