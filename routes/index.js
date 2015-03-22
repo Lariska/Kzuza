@@ -82,6 +82,7 @@ router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
     cities.unshift("בחר עיר");
     var price =  req.cookies.cart.price;
+    console.log(price);
     res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities , price: price});
 });
 
@@ -133,8 +134,13 @@ router.get('/sandwich', function(req, res){
     res.render('sandwichPage', {title: "סנדוויצ'ים", user: req.user});
 });
 
-router.get('/salad', function(req, res){
-    res.render('saladPage', {title: "סלטים", user: req.user});
+router.get('/salad/:size?', function(req, res){
+    var size = req.param('size');
+    if (size) {
+        res.render('saladPage', {title: "סלטים", user: req.user, size: size});
+    } else{
+        res.render('saladPage', {title: "סלטים", user: req.user});
+    }
 });
 
 router.get('/contact', function(req, res){
@@ -152,24 +158,35 @@ router.post('/order/item/:id', function(req, res){
     //console.log(cart);
     if(!cart){
         console.log("no " + req.param('item')._id);
-        if(req.user){
-            cart = new userOrder({user: req.user._id, items: item, salads: []});
-        } else {
-            cart = new userOrder({user: "", items: item, salads: []});
-        }
-        //cart.items.push(req.param.id);
+        cart = new userOrder({
+            user: req.user ? req.user._id : "",
+            items: [],
+            salads: [],
+            prices: [],
+            price: 0
+        });
+        cart.items.push(item._id);
+        cart.prices.push(item.price);
+        cart.price += parseInt(item.price);
         cart.save(function(err, cart){
             if(err) return console.error(err);
-            //console.log(cart);
+            console.log(cart);
             res.cookie('cart',cart);
             res.redirect("/");
         });
     } else {
-        console.log("yes")
+        console.log("yes " +cart);
         userOrder.findOne({_id: cart._id}, function(err, doc){
             if (err) return console.error(err);
             doc.items.push(req.param('id'));
-            doc.save();
+            doc.prices.push(item.price);
+            doc.price += parseInt(item.price)
+            doc.save(function(err, cart) {
+                if (err) return console.error(err);
+                console.log(cart);
+                res.cookie('cart', cart);
+                res.redirect("/");
+            });
             //userOrder.update({_id: cart._id}, {items: cart.items}, function(err, doc){})
         })
     }

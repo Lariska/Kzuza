@@ -26,32 +26,16 @@ angularApp.factory('Order', function($resource){
     return{
         cart: $resource('/data/order/:id/:salad', {id: '@_id'}),
         fullCart: $resource('/data/fullCart'),
+        item: $resource('/order/item/:id'),
         items: itm,
         salads: sad,
-        //numOfItm: num,
-        //price: prc,
-        //numOfItems: function() {return ++num},
-        //addPrice: function(prc) {return this.price =+ prc},
         addSandwich: function(sandwich){
             itm.push(sandwich);
-            //this.price = this.addPrice(sandwich.price);
-            //this.numOfItm = this.numOfItems();
         },
         addSalad: function(salad){
             sad.push(salad);
         }
 
-        //},
-        //addItem: function(){ return ++num; },
-        //price: function(){ var total = 0;
-        //    for( itemm in itm){
-        //        total += itemm.price;
-        //    }
-        //    for( saladd in sad ){
-        //        total += saladd.price;
-        //    }
-        //    return total;
-        //}
     }
 });
 
@@ -75,11 +59,33 @@ angularApp.controller('menuController',function($scope, Menu, Order) {
         return selectedTab===$scope.tab
     };
 
-    $scope.addItem = function(item){
-        if(item.titleID = "54f74f7133766c581b837870") {
+    $scope.addItem = function(item, title){
+        if(item.titleID == "54f74f7133766c581b837870") {
             Order.addSandwich(item);
+            Order.item.save({id: item._id, item: item}, function(item){});
         }
+        if(title == "salad"){
+            switch (item.price){
+                case "27": window.location = '/salad/size1';
+                    break;
+                case "31": window.location = '/salad/size2';
+                    break;
+                case "35": window.location = '/salad/size3';
+                    break;
+            }
+        }
+
     };
+
+    $scope.titleSelect = function(title){
+        //confirm(title);
+        if(title == "salad"){
+            //confirm(title);
+            window.location = '/salad'
+        }
+
+    };
+
 });
 
 angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
@@ -90,7 +96,7 @@ angularApp.controller('sandwichCtrl', function($scope, Menu, Order, $http){
 
         });
     });
-    $scope.select = "לא נבחר"
+    $scope.select = "לא נבחר";
     $scope.over = function(sandwich){
         $scope.select = sandwich;
     };
@@ -187,6 +193,7 @@ angularApp.controller('saladCtrl', function ($scope, Salad, Order, $http) {
 });
 
 angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order){    ///, $cookies
+
     //var cartP = $cookies.get('cart');
     var items = [];
     var salads = [];
@@ -247,12 +254,13 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad){      ///
     $scope.deleteItem = function(item){
         var idx = $scope.items.indexOf(item);
         $scope.items.splice(idx, 1);
-        Order.cart.remove({id: item._id}, function(doc){});
+        Order.cart.remove({id: item._id, item: item, price: item.price}, function(doc){});
     };
 
-    $scope.deleteSalad = function(salad){
+    $scope.deleteSalad = function(salad) {
         var idx = $scope.salads.indexOf(salad);
         $scope.salads.splice(idx, 1);
+        Order.cart.remove({id: salad._id, salad: salad, price: salad.price}, function (doc) {});
     };
 
     $scope.menu = false;

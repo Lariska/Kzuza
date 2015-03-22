@@ -3,7 +3,11 @@ block content
    div.content.large_page.take_order
       h1 בר סלטים
       img.logo(src="/images/logo.jpg")
-      h2 קבלת הזמנה
+      .row
+          .columns.small-6
+             h2 קבלת הזמנה
+          .columns.small-4
+              h3 &#x20AA #{price}
       form(dir="rtl", action="/payment_method", method="post", data-abide)
          .row
             .switch.round.medium-2.right

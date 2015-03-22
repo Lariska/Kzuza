@@ -12,5 +12,5 @@ div#sideOrder
                 li(ng-repeat="salad in salads")
                     a(ng-click="deleteSalad(salad)") &#215
                     p {{salad.size}} ... {{salad.price}} ש"ח
-
-            button.button(href="/tack_order") הזמן
+            a(href="/take_order")
+                button.button() הזמן

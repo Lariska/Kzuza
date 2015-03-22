@@ -17,8 +17,21 @@ var orderSchema = new Schema({
 var userOrderSchema = new Schema({
     user: String,
     items: [String],
-    salads: [String]
+    salads: [String],
+    prices: [Number],
+    price: Number
 });
+
+userOrderSchema.virtual('fullPrice').get( function(){
+    var price = 0;
+    var p;
+    for (p in this.prices){
+        price += p;
+    }
+    return price;
+});
+
+
 
 exports.Order = mongoose.model('Order', orderSchema);
 

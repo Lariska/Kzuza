@@ -127,7 +127,8 @@ router.get('/order/:id?', function(req, res){
 router.delete('/order/:id', function(req, res){
     var cart = req.cookies.cart;
     var removeId = req.param('id');
-    console.log(removeId+"----")
+    var price = req.param('price');
+    console.log(removeId+"----");
     if(cart){
         userOrder.findOne({_id: cart._id}, function(err, order) {
             if (err) return console.error(err);
@@ -135,7 +136,10 @@ router.delete('/order/:id', function(req, res){
             if (idx1 !== -1) order.items.splice(idx1, 1);
             var idx2 = order.salads.indexOf(removeId);
             if (idx2 !== -1) order.salads.splice(idx2, 1);
+            order.price -= parseInt(price);
             order.save();
+            console.log(order);
+            res.cookie('cart', order);
             res.send(order);
         });
     }
@@ -182,6 +186,8 @@ router.post('/salad/:id?', function(req, res){
         if(cart){
             userOrder.findOne({_id: cart._id}, function(err, cartF){
                 cartF.salads.push(saladF._id);
+                cartF.prices.push(saladF.price);
+                cartF.price += parseInt(saladF.price);
                 cartF.save();
                 res.cookie('cart', cartF);
                 //console.log(saladF)
@@ -191,9 +197,13 @@ router.post('/salad/:id?', function(req, res){
             cart = new userOrder({
                 user: req.user ? req.user._id : "",
                 salads : [],
-                items: []
+                items: [],
+                prices: [],
+                price: 0
             });
             cart.salads.push(saladF._id);
+            cart.prices.push(saladF.price);
+            cart.price += parseInt(saladF.price);
             cart.save(function(err, cartF){
                 if (err) return console.error(err);
                 res.cookie('cart', cartF);
