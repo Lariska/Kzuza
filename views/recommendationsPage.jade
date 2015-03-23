@@ -3,22 +3,35 @@ block content
     h1 המלצות
 
     div.recomm
+        div.row.lefts
+            div#tabs(ng-controller="recommendController")
+                div.row(dir="rtl")
+                    div.columns.large-10
+                        ul.callout(dir="rtl")
+                            li.side-nav(ng-repeat="rec in recommendations" dir="rtl")
+                                div.row.pat.borderGreen
+                                    div.columns.large-10
+                                        h5
+                                            u תאריך:
+                                        p.nootregular {{rec.date}}
+                                        h5
+                                            u נושא:
+                                        p {{rec.subject}}
+                                        h5
+                                            u שם:
+                                        p {{rec.name}}
+                                        h5
+                                            u המלצה:
+                                        p {{rec.text}}
         div.row.rights
             form(method="post" action="/data/saveRecommend")
                 fieldset
-                    p תאריך
+                    p :תאריך
                     input(type="text" id="date" name="date").text-right
-                    p נושא
+                    p :נושא
                     input(type="text" id="subject" name="subject").text-right
-                    p שם
+                    p :שם
                     input(type="text" id="name" name="name").text-right
-                    p תוכן
+                    p :תוכן ההמלצה
                     textarea(type="text" id="text" name="text").text-right
                     button.button(type="submit" placeholder="save title") שמור
-        div.row.lefts
-
-
-            //date: String,
-              subject: String,
-              name: String,
-              text: String
