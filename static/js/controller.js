@@ -26,7 +26,7 @@ angularApp.factory('Order', function($resource){
     return{
         cart: $resource('/data/order/:id/:salad', {id: '@_id'}),
         fullCart: $resource('/data/fullCart'),
-        item: $resource('/order/item/:id'),
+        item: $resource('/order/item/:id', {id: '@_id'}),
         items: itm,
         salads: sad,
         addSandwich: function(sandwich){

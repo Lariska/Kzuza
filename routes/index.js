@@ -81,7 +81,7 @@ router.get('/home', function(req, res) {
 router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
     cities.unshift("בחר עיר");
-    var price =  req.cookies.cart.price;
+    var price =  req.cookies.cart ? req.cookies.cart.price : 0;
     console.log(price);
     res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities , price: price});
 });
@@ -151,7 +151,7 @@ router.get('/recommendations', function(req, res){
     res.render('recommendationsPage', {title: "המלצות", user: req.user});
 });
 
-router.post('/order/item/:id', function(req, res){
+router.post('/order/item/:id?', function(req, res){
     //res.clearCookie('cart');
     var cart = req.cookies.cart;
     var item = req.param('item')
@@ -178,7 +178,7 @@ router.post('/order/item/:id', function(req, res){
         console.log("yes " +cart);
         userOrder.findOne({_id: cart._id}, function(err, doc){
             if (err) return console.error(err);
-            doc.items.push(req.param('id'));
+            doc.items.push(item._id);
             doc.prices.push(item.price);
             doc.price += parseInt(item.price)
             doc.save(function(err, cart) {
