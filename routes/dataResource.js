@@ -11,10 +11,6 @@ router.get('/admin', function(req,res){
     res.render('admin');
 });
 
-router.get('/recommendations', function(req, res){
-    res.render('recommendationsPage', {title: "המלצות", user: req.user});
-});
-
 router.get('/menu/:name?', function(req, res){
     console.log("------>" + req.param('name') + "<------" )
     if(req.param('name')){
@@ -48,8 +44,15 @@ router.post('/saveRecommend', function(req, res){
         }
         console.log('recommendation saved succesfuly');
     });
-    res.redirect('recommendations');
+    res.redirect('/recommendations');
 });
+
+router.get('/recommend',function(req, res){
+    recommendations.find(function(err,data) {
+        if (err) return console.error(err);
+        res.send(data);
+    })
+})
 
 router.post('/saveMenu', function(req, res){
     var menuItem = new menu({title: req.param('title'), image: req.param('image'), items:[]});

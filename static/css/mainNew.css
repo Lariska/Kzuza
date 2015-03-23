@@ -363,15 +363,17 @@ button.button.contact {
     height: 100%;
 }
 
-.rights {
-    float: right;
-    width: 45%;
-}
-
 .lefts {
     float: right;
-    width: 45%;
+    width: 50%;
+    margin-right: 50px;
 }
+
+.rights {
+    float: right;
+    width: 40%;
+}
+
 /*.wow.slideLeft.menu.ng-show{*/
     /*transition: 0.75s;*/
     /*opacity: 0;*/

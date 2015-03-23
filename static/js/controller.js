@@ -1,6 +1,9 @@
 
 var  angularApp = angular.module('angularApp', ['ngResource', 'ngAnimate']);  ///   'ngCookies',
 
+angularApp.factory('Recommend', function($resource){
+    return $resource('/data/recommend')
+});
 
 angularApp.factory('Menu', function($resource){
     //return $resource('/data/menu/:id');//, {id: '@_id'});
@@ -52,6 +55,14 @@ angularApp.factory('Order', function($resource){
         }
 
     }
+});
+
+angularApp.controller('recommendController',function($scope, Recommend) {
+
+    Recommend.query(function(data){
+    $scope.recommendations = data;
+
+    });
 });
 
 angularApp.controller('menuController',function($scope, Menu, Order) {
