@@ -1,5 +1,5 @@
 $('.slider1').bxSlider({
-    slideWidth: 500,
+    slideWidth: 470,
     auto: true,
     slideMargin: 220
 });
