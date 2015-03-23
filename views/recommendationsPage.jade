@@ -1,2 +1,18 @@
 extends layout
 block content
+    h1 המלצות
+
+    div.recomm
+        div.row.rights
+            form(method="post" action="/data/saveRecommend")
+                fieldset
+                    p תאריך
+                    input(type="text" id="date" name="date")
+                    p נושא
+                    input(type="text" id="subject" name="subject")
+                    p שם
+                    input(type="text" id="name" name="name")
+                    p תוכן
+                    input(type="text" id="text" name="text")
+                    button.button(type="submit" placeholder="save title") שמור
+        div.row.lefts
