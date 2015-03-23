@@ -98,7 +98,8 @@ router.post('/payment_method', function(req, res) {
     req.user.save();
     res.render('payment_method', { title: 'Kzuza', user: req.user, city: order.city,
     street: order.street, house_number: order.house_number, floor: order.floor,
-    apartment_number: order.apartment_number, take_away: order.take_away});
+    apartment_number: order.apartment_number, take_away: order.take_away
+    });
 });
 
 router.post('/payment', function(req, res) {
