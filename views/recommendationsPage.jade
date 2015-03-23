@@ -1,6 +1,6 @@
 extends layout
 block content
-    h1 המלצות
+    h1.text-right המלצות
 
     div.recomm
         div.row.rights
@@ -26,12 +26,12 @@ block content
         div.row.lefts
             form(method="post" action="/data/saveRecommend")
                 fieldset
-                    p :תאריך
+                    p.text-right :תאריך
                     input(type="text" id="date" name="date").text-right
-                    p :נושא
+                    p.text-right :נושא
                     input(type="text" id="subject" name="subject").text-right
-                    p :שם
+                    p.text-right :שם
                     input(type="text" id="name" name="name").text-right
-                    p :תוכן ההמלצה
+                    p.text-right :תוכן ההמלצה
                     textarea(type="text" id="text" name="text").text-right
                     button.button(type="submit" placeholder="save title") שמור
