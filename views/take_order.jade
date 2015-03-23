@@ -6,12 +6,8 @@ block content
       .row
           .columns.small-6
              h2 קבלת הזמנה
-          if(price)
-              .columns.small-4
-                  h3 &#x20AA #{price}
-          else
-              script.
-                  window.location = "/"
+          .columns.small-4
+             h3 מחיר: #{price}
       form(dir="rtl", action="/payment_method", method="post", data-abide)
          .row
             .switch.round.medium-2.right

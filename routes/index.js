@@ -82,7 +82,9 @@ router.get('/take_order', function(req, res) {
     var cities = israel_cities.split(",");
     cities.unshift("בחר עיר");
     var price =  req.cookies.cart ? req.cookies.cart.price : 0;
-    console.log(price);
+    if(typeof price === 'undefined'){
+        price = 0;
+    };
     res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities , price: price});
 });
 
