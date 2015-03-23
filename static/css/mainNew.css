@@ -353,12 +353,31 @@ button.button.contact {
     text-align: left;
 }
 
+/*.sample-show-hide {*/
+    /*-webkit-transition:all linear 0.5s;*/
+    /*transition:all linear 0.5s;*/
+/*}*/
+
+/*.sample-show-hide.ng-hide {*/
+    /*opacity:0;*/
+/*}*/
+
 .sample-show-hide {
     -webkit-transition:all linear 0.5s;
     transition:all linear 0.5s;
+    -webkit-transition-delay: 0.6s;
+    -webkit-transition-duration: 0.4s;
+    transition-delay: 0.6s;
+    transition-duration: 0.4s;
+    opacity: 1;
 }
 
 .sample-show-hide.ng-hide {
+    transition:all linear 0.5s;
+    -webkit-transition-delay: 0s;
+    -webkit-transition-duration: 0.4s;
+    transition-delay: 0s;
+    transition-duration: 0.4s;
     opacity:0;
 }
 

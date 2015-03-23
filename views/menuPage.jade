@@ -13,9 +13,9 @@ block content
                                     h3 {{item.title}}
             div.columns.small-7
                 br
-                div.borderGreen.pat
+                div
                     div(ng-repeat="item in menu" dir="rtl")
-                        section.sample-show-hide(ng-show="isTab($index)")
+                        section.borderGreen.pat.sample-show-hide(ng-show="isTab($index)")
                             a(ng-click="titleSelect(item.name)")
                                 h1 {{item.title}}
                             ul
