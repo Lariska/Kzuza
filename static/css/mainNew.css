@@ -302,9 +302,9 @@ button.button.contact {
     width: 40%;
 }
 
-/*.up {
+.up {
     margin-left: 100px;
-}*/
+}
 
 .leftdiv {
     width: 40%;
@@ -317,7 +317,7 @@ button.button.contact {
 
 .leftpic {
     float: right;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 
 .sticky-menu-tab{

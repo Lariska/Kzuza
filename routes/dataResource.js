@@ -52,7 +52,7 @@ router.get('/recommend',function(req, res){
         if (err) return console.error(err);
         res.send(data);
     })
-})
+});
 
 router.post('/saveMenu', function(req, res){
     var menuItem = new menu({title: req.param('title'), image: req.param('image'), items:[]});
@@ -158,7 +158,7 @@ router.delete('/order/:id', function(req, res){
             if (idx2 !== -1) order.salads.splice(idx2, 1);
             order.price -= parseInt(price);
             order.save();
-            console.log(order);
+            //console.log(order);
             res.cookie('cart', order);
             res.send(order);
         });
