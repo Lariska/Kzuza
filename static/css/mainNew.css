@@ -365,13 +365,13 @@ button.button.contact {
 
 .lefts {
     float: right;
-    width: 50%;
-    margin-right: 50px;
+    width: 40%;
 }
 
 .rights {
     float: right;
-    width: 40%;
+    width: 50%;
+    margin-right: 50px;
 }
 
 /*.wow.slideLeft.menu.ng-show{*/

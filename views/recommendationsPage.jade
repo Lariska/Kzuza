@@ -3,7 +3,7 @@ block content
     h1 המלצות
 
     div.recomm
-        div.row.lefts
+        div.row.rights
             div#tabs(ng-controller="recommendController")
                 div.row(dir="rtl")
                     div.columns.large-10
@@ -23,7 +23,7 @@ block content
                                         h5
                                             u המלצה:
                                         p {{rec.text}}
-        div.row.rights
+        div.row.lefts
             form(method="post" action="/data/saveRecommend")
                 fieldset
                     p :תאריך
