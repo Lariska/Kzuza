@@ -279,15 +279,15 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad){      ///
     $scope.deleteItem = function(item){
         var idx = $scope.items.indexOf(item);
         $scope.items.splice(idx, 1);
-        Order.cart.remove({id: item._id, item: item, price: item.price}, function(doc){});
+        Order.cart.remove({id: item._id, price: item.price}, function(doc){});
         Order.dec(item.price);
     };
 
     $scope.deleteSalad = function(salad) {
         var idx = $scope.salads.indexOf(salad);
         $scope.salads.splice(idx, 1);
-        Order.cart.remove({id: salad._id, salad: salad, price: salad.price}, function (doc) {});
-        Order.dec(Salad.price);
+        Order.cart.remove({id: salad._id, price: salad.price}, function (doc) {});
+        Order.dec(salad.price);
     };
 
     $scope.menu = false;
