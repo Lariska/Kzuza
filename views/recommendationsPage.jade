@@ -7,13 +7,13 @@ block content
             form(method="post" action="/data/saveRecommend")
                 fieldset
                     p תאריך
-                    input(type="text" id="date" name="date")
+                    input(type="text" id="date" name="date").text-right
                     p נושא
-                    input(type="text" id="subject" name="subject")
+                    input(type="text" id="subject" name="subject").text-right
                     p שם
-                    input(type="text" id="name" name="name")
+                    input(type="text" id="name" name="name").text-right
                     p תוכן
-                    textarea(type="text" id="text" name="text")
+                    textarea(type="text" id="text" name="text").text-right
                     button.button(type="submit" placeholder="save title") שמור
         div.row.lefts
 
