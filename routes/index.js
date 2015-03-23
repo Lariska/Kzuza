@@ -148,7 +148,7 @@ router.get('/contact', function(req, res){
 });
 
 router.get('/recommendations', function(req, res){
-    res.render('recommendationsPage', {title: "צור קשר", user: req.user});
+    res.render('recommendationsPage', {title: "המלצות", user: req.user});
 });
 
 router.post('/order/item/:id', function(req, res){

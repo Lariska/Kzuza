@@ -5,9 +5,14 @@ var menuItem = require('../dbModels/menu').menuItem;
 var ingredients = require('../dbModels/Salad').ingredients;
 var userOrder = require('../dbModels/Order').userOrder;
 var Salad = require('../dbModels/Salad').salad;
+var recommendations = require('../dbModels/recommendation').recommendations;
 
 router.get('/admin', function(req,res){
     res.render('admin');
+});
+
+router.get('/recommendations', function(req, res){
+    res.render('recommendationsPage', {title: "המלצות", user: req.user});
 });
 
 router.get('/menu/:name?', function(req, res){
@@ -32,6 +37,18 @@ router.get('/menu/:name?', function(req, res){
             res.send(titles);
         });
     }
+});
+
+router.post('/saveRecommend', function(req, res){
+    var recommendItem = new recommendations({date: req.param('date'), subject: req.param('subject'), name: req.param('name'), text: req.param('text')});
+    recommendItem.save(function(err){
+        if (err){
+            console.log('Error in Saving menu item: '+err);
+            throw err;
+        }
+        console.log('recommendation saved succesfuly');
+    });
+    res.redirect('recommendations');
 });
 
 router.post('/saveMenu', function(req, res){
