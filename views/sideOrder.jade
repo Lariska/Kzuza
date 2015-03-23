@@ -1,7 +1,7 @@
 div#sideOrder
     section(ng-controller="cartCtrl")
         div.sticky-menu-tab(ng-hide="menu")
-            a(ng-click="open()") הזמנה
+            a(ng-click="open()") {{num}} - הזמנה
         div.sticky-menu-show(ng-show="menu")
             a.close-reveal-modal(ng-click="close()") &#215
             ul
@@ -12,5 +12,6 @@ div#sideOrder
                 li(ng-repeat="salad in salads")
                     a(ng-click="deleteSalad(salad)") &#215
                     p {{salad.size}} ... {{salad.price}} ש"ח
+            h5 {{price}}
             a(href="/take_order")
                 button.button() הזמן

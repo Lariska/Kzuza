@@ -22,18 +22,33 @@ angularApp.factory('Salad', function($resource){
 angularApp.factory('Order', function($resource){
     var itm = [];
     var sad = [];
-
+    var price = [0];
+    var num = [0];
     return{
         cart: $resource('/data/order/:id/:salad', {id: '@_id'}),
         fullCart: $resource('/data/fullCart'),
         item: $resource('/order/item/:id', {id: '@_id'}),
         items: itm,
         salads: sad,
+        price: price,
+        numberOfItems: num,
         addSandwich: function(sandwich){
             itm.push(sandwich);
+            var temp = price.pop();
+            temp += parseInt(sandwich.price);
+            price.push(temp);
+            num.push( parseInt(num.pop()) + 1);
         },
         addSalad: function(salad){
             sad.push(salad);
+            var temp = price.pop();
+            temp += parseInt(salad.price);
+            price.push(temp);
+            num.push( parseInt(num.pop()) + 1);
+        },
+        dec: function(pdec){
+            price.push( parseInt(price.pop()) - parseInt(pdec) );
+            num.push( parseInt(num.pop()) - 1);
         }
 
     }
@@ -77,13 +92,9 @@ angularApp.controller('menuController',function($scope, Menu, Order) {
 
     };
 
-    $scope.titleSelect = function(title){
-        //confirm(title);
-        if(title == "salad"){
-            //confirm(title);
-            window.location = '/salad'
-        }
-
+    $scope.titleSelect = function(title) {
+        if (title == "salad") window.location = '/salad';
+        if (title == "sandwich") window.location = '/sandwich'
     };
 
 });
@@ -200,6 +211,7 @@ angularApp.controller('orderCtrl', function($scope, Menu, Salad, Order){    ///,
 
     $scope.itemsInCart = items;
     $scope.saladsInCart = salads;
+    $scope.price = Order.price;
 
     Order.cart.get( function(data){
         $scope.cart = data;
@@ -235,6 +247,8 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad){      ///
 
     $scope.items = Order.items;
     $scope.salads = Order.salads;
+    $scope.price = Order.price;
+    $scope.num = Order.numberOfItems;
 
     Order.cart.get( function(data){
         $scope.cart = data;
@@ -255,12 +269,14 @@ angularApp.controller('cartCtrl', function($scope, Order, Menu, Salad){      ///
         var idx = $scope.items.indexOf(item);
         $scope.items.splice(idx, 1);
         Order.cart.remove({id: item._id, item: item, price: item.price}, function(doc){});
+        Order.dec(item.price);
     };
 
     $scope.deleteSalad = function(salad) {
         var idx = $scope.salads.indexOf(salad);
         $scope.salads.splice(idx, 1);
         Order.cart.remove({id: salad._id, salad: salad, price: salad.price}, function (doc) {});
+        Order.dec(Salad.price);
     };
 
     $scope.menu = false;
