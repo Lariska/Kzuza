@@ -3,9 +3,9 @@ div#sideOrder
         div.sticky-menu-tab(ng-hide="menu")
             a(ng-click="open()") {{num}} - הזמנה
         div.sticky-menu-show(ng-show="menu")
-            a.close-reveal-modal(ng-click="close()") &#215
+            a.close-reveal-modal(ng-click="close()" dir="rtl") &#215
             ul
-                li(ng-repeat="item in items")
+                li(ng-repeat="item in items" dir="rtl")
                     a(ng-click="deleteItem(item)") &#215
                     p {{item.name}} ... {{item.price}} ש"ח
             ul

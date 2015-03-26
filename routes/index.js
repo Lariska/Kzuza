@@ -84,7 +84,7 @@ router.get('/take_order', function(req, res) {
     var price =  req.cookies.cart ? req.cookies.cart.price : 0;
     if(typeof price === 'undefined'){
         price = 0;
-    };
+    }
     res.render('take_order', { title: 'Kzuza', user: req.user, cities: cities , price: price});
 });
 
