@@ -18,16 +18,16 @@ $(document).ready(function() {
                         rotate(".second");
                         setTimeout(function() {
                             $(".flippers .second .back").css("background-color", "forestgreen");
-                            $(".flippers .progress").width("139%");
+                            $(".flippers .progress").width("147%");
                             rotate(".third");
                             setTimeout(function() {
                                 rotate(".third");
                                 setTimeout(function() {
                                     rotate(".third");
-                                    setTimeout(function() {
-                                        $(".flippers .third .back").css("background-color", "forestgreen");
-                                        $('body').fadeOut(3000, function() {window.location.href="/daily_meal"});
-                                    }, 3000);
+                                    //setTimeout(function() {
+                                    //    $(".flippers .third .back").css("background-color", "forestgreen");
+                                    //    $('body').fadeOut(3000, function() {window.location.href="/daily_meal"});
+                                    //}, 3000);
                                 }, 3000);
                             }, 3000);
                         }, 3000);
