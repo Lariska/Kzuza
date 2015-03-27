@@ -422,3 +422,7 @@ button.button.contact {
 .bx-wrapper, .bx-viewport {
     height: 400px !important; //provide height of slider
 }
+
+a.alert, a.facebook {
+    padding: 0.3rem;
+}
