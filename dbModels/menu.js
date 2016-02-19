@@ -6,7 +6,8 @@ var menuSchema = new Schema({
     title: String,
     //description: String,
     image: String,
-    items: [Schema.objectId]
+    items: [Schema.ObjectId]
+    //items: [ {type : Schema.ObjectId, ref : 'Package'} ]
 });
 
 var menuItemSchema = new Schema({
